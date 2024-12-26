@@ -1,0 +1,60 @@
+.project-section {
+  background-color: #1a1a2e; /* Color de fondo oscuro */
+  color: #ffffff;
+  padding: 60px 0;
+}
+
+/* Tarjetas */
+.card {
+  background-color: #16213e;
+  border: none;
+  color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Carrusel */
+.carousel-item img {
+  height: 400px;
+  object-fit: cover;
+}
+
+/* Tecnologías */
+.tech-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin: 10px;
+  transition: transform 0.3s;
+}
+
+.tech-logo {
+  font-size: 40px;
+  margin: 10px;
+}
+/* Información de acceso */
+.access-info p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #0f3460;
+}
+
+/* Botones */
+.btn-primary {
+  background-color: #0f3460;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0e295f;
+}

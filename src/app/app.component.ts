@@ -1,12 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true, // Importante para standalone components
+  imports: [RouterModule], // Importa RouterModule para <router-outlet>
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'angular-portfolio';
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
+  navItems = [
+    { label: 'Home', path: '/' },
+    { label: 'Proyectos', path: '/projects' },
+    { label: 'Sobre Mí', path: '/about' },
+    { label: 'Contacto', path: '/contact' },
+  ];
 }

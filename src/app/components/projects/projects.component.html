@@ -1,0 +1,89 @@
+<div class="project-section">
+  <div class="container">
+    <h2 class="text-center mb-4">Mis Proyectos</h2>
+
+    <!-- Lista de proyectos como botones -->
+    <div class="row g-4">
+      <div *ngFor="let project of projects; let pIndex = index" class="col-md-4 d-flex align-items-stretch">
+        <div class="card shadow-lg w-100">
+          <!-- Botón que abre el modal -->
+          <button class="btn p-0 w-100 border-0" (click)="openModal(project)">
+            <img [src]="project.images[0]" class="card-img-top" alt="{{ project.name }}">
+          </button>
+
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-center">{{ project.name }}</h5>
+            <p class="card-text text-center flex-grow-1">{{ project.description }}</p>
+            <button class="btn btn-primary mt-auto" (click)="openModal(project)">
+              Ver más
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!-- Encabezado del modal -->
+          <div class="modal-header">
+            <h5 class="modal-title" id="projectModalLabel">{{ selectedProject?.name }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <!-- Contenido del modal -->
+          <div class="modal-body" *ngIf="selectedProject">
+            <!-- Carrusel de imágenes -->
+            <div id="projectCarousel" class="carousel slide">
+              <div class="carousel-inner">
+                <div *ngFor="let image of selectedProject.images; let i = index"
+                     class="carousel-item"
+                     [class.active]="i === 0">
+                  <img [src]="image" class="d-block w-100" alt="Imagen del proyecto">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Anterior</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Siguiente</span>
+              </button>
+            </div>
+
+            <!-- Logos de tecnologías -->
+            <div class="technologies mt-4 text-center">
+              <ng-container *ngFor="let tech of selectedProject?.technologies">
+                <i [class]="'devicon-' + tech + '-plain colored'" class="tech-logo"></i>
+              </ng-container>
+            </div>
+
+
+            <!-- Información de usuario y contraseña -->
+            <div class="access-info text-center mt-4">
+              <p><strong>Usuario:</strong> {{ selectedProject?.username || 'N/A' }}</p>
+              <p><strong>Contraseña:</strong> {{ selectedProject?.password || 'N/A' }}</p>
+            </div>
+          </div>
+
+          <!-- Pie del modal -->
+          <div class="modal-footer">
+            <a *ngIf="selectedProject?.link"
+            [href]="selectedProject?.link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary">
+           Ver Proyecto
+         </a>
+
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
