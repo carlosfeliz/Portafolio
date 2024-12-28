@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, AfterViewInit, TemplateRef } from '@angular/core';
+import { CommonModule, NgIfContext } from '@angular/common';
 import { ProjectService, Project } from '../../services/project.service';
 
 declare var bootstrap: any; // Declarar manualmente Bootstrap JS
@@ -12,10 +12,13 @@ declare var bootstrap: any; // Declarar manualmente Bootstrap JS
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit, AfterViewInit {
+[x: string]: any;
   projects: Project[] = [];
   selectedProject: Project | null = null; // Proyecto seleccionado para el modal
+  noProjects: TemplateRef<NgIfContext<boolean>> | null | undefined;
+  noProjectsTemplate: TemplateRef<NgIfContext<boolean>> | null | undefined;
 
-  constructor(private projectService: ProjectService) {}
+  constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
     // Obtener los proyectos del servicio
@@ -39,6 +42,11 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
       const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
       modal.show(); // Muestra el modal
     }
+  }
+
+  // Método para filtrar proyectos por categoría
+  getProjectsByCategory(category: 'web' | 'desktop' | 'mobile'): Project[] {
+    return this.projects.filter((project) => project.category === category);
   }
 
 }

@@ -1,0 +1,123 @@
+/* Estilo general de la sección de contacto */
+.contact-container {
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+  min-height: 100vh;
+  background-color: #1a1a2e;
+  padding: 2rem;
+ 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-section h2 {
+  color: #e94560;
+}
+
+.contact-section .form-label {
+  color: #ffffff;
+}
+
+.contact-section .form-control {
+  background-color: #2d2d44;
+  color: #ffffff;
+  border: 1px solid #555;
+}
+
+.contact-section .form-control:focus {
+  background-color: #3a3a5e;
+  border-color: #e94560;
+  color: #ffffff;
+  box-shadow: 0 0 5px rgba(233, 69, 96, 0.5);
+}
+
+.contact-section button.btn-primary {
+  background-color: #e94560;
+  border-color: #e94560;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.contact-section button.btn-primary:hover {
+  background-color: #c23450;
+  border-color: #c23450;
+}
+/* Botón flotante de GitHub */
+.github-float {
+  position: fixed;
+  bottom: 160px; /* Ajusta la posición vertical del botón */
+  right: 20px; /* Ajusta la posición horizontal del botón */
+  background-color: #333; /* Color de fondo de GitHub */
+  color: #ffffff; /* Color del icono */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.github-float:hover {
+  background-color: #24292e; /* Cambia a un color más oscuro al pasar el mouse */
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+}
+
+.github-float i {
+  font-size: 24px; /* Tamaño del icono */
+}
+
+
+/* Estilos para el botón flotante de WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  bottom: 90px; /* Ajuste para no superponer los botones */
+  right: 20px;
+  background-color: #25d366;
+  color: #ffffff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.whatsapp-float:hover {
+  background-color: #1ebe57;
+}
+
+.whatsapp-float i {
+  font-size: 24px;
+}
+
+/* Estilos para el botón flotante de LinkedIn */
+.linkedin-float {
+  position: fixed;
+  bottom: 20px; /* Espaciado entre botones */
+  right: 20px;
+  background-color: #0077b5;
+  color: #ffffff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.linkedin-float:hover {
+  background-color: #005582;
+}
+
+.linkedin-float i {
+  font-size: 24px;
+}
+

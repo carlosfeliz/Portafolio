@@ -9,6 +9,7 @@ export interface Project {
   link?: string;
   username?: string; // Usuario de prueba
   password?: string; // Contraseña de prueba
+  category: 'web' | 'desktop' | 'mobile';
 }
 
 @Injectable({
@@ -36,6 +37,8 @@ export class ProjectService {
         username: '12345678901',
         password: '12345678901',
 
+        category: 'web',
+
       },
       {
         name: 'FM Acesores',
@@ -51,6 +54,7 @@ export class ProjectService {
           'wordpress',
 
         ],
+        category: 'web',
       },
       {
         name: 'Punto de Venta con Contabilidad y Comprobante Fiscal (República Dominicana)',
@@ -74,6 +78,7 @@ export class ProjectService {
         technologies: ['laravel', 'livewire', 'mysql', 'bootstrap'],
         username: 'admin@mail.com',
         password: 'admin123',
+        category: 'web',
       },
 
       {
@@ -90,6 +95,7 @@ export class ProjectService {
         technologies: ['laravel', 'livewire', ],
         username: 'prueba@mail.com',
         password: '123456789',
+        category: 'web',
       },
     ]);
   }

@@ -1,0 +1,212 @@
+.about-container  {
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+  min-height: 100vh;
+  background-color: #1a1a2e;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-section h2,
+.about-section h4 {
+  color: #e94560;
+}
+
+.about-section p,
+.about-section ul li {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.about-section img {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 5px solid #e94560;
+  transition: transform 0.3s ease-in-out;
+}
+
+.about-section img:hover {
+  transform: scale(1.05);
+}
+
+.about-section ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.about-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.about-section .lead {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.about-section .row {
+  margin-bottom: 2rem;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animated-avatar {
+  animation: zoomIn 1s ease-in-out;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+  animation-fill-mode: both;
+}
+
+/* Estilo responsivo */
+@media (max-width: 992px) {
+  .about-section .row {
+    text-align: center;
+  }
+
+  .about-section .text-center img {
+    margin-bottom: 20px;
+  }
+}
+.tech-logo {
+  width: 50px; /* Ajusta el tamaño del logo */
+  height: 50px;
+  margin-right: 10px; /* Espaciado entre logo y texto */
+  filter: invert(1); /* Convierte el logo a blanco */
+  transition: transform 0.3s ease-in-out, filter 0.3s;
+}
+
+.tech-logo:hover {
+  transform: scale(1.2); /* Efecto zoom al pasar el mouse */
+  filter: invert(0.8); /* Reduce el blanco al hacer hover */
+}
+
+.tech-list {
+  display: grid; /* Activa el grid layout */
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas de igual tamaño */
+  gap: 20px; /* Espaciado entre los elementos */
+  list-style-type: none; /* Sin viñetas */
+  padding: 0; /* Elimina el padding del ul */
+  margin: 0; /* Elimina márgenes */
+}
+
+.tech-list li {
+  display: flex; /* Alinea el logo con el texto */
+  align-items: center;
+  gap: 10px; /* Espaciado entre logo y texto */
+  font-size: 1rem;
+  color: #fff; /* Texto blanco */
+}
+
+.tech-logo {
+  width: 40px; /* Ajusta el tamaño del logo */
+  height: 40px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.tech-logo:hover {
+  transform: scale(1.2); /* Efecto zoom al pasar el mouse */
+}
+
+/* Botón flotante de GitHub */
+.github-float {
+  position: fixed;
+  bottom: 160px; /* Ajusta la posición vertical del botón */
+  right: 20px; /* Ajusta la posición horizontal del botón */
+  background-color: #333; /* Color de fondo de GitHub */
+  color: #ffffff; /* Color del icono */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.github-float:hover {
+  background-color: #24292e; /* Cambia a un color más oscuro al pasar el mouse */
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+}
+
+.github-float i {
+  font-size: 24px; /* Tamaño del icono */
+}
+
+
+/* Estilos para el botón flotante de WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  bottom: 90px; /* Ajuste para no superponer los botones */
+  right: 20px;
+  background-color: #25d366;
+  color: #ffffff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.whatsapp-float:hover {
+  background-color: #1ebe57;
+}
+
+.whatsapp-float i {
+  font-size: 24px;
+}
+
+/* Estilos para el botón flotante de LinkedIn */
+.linkedin-float {
+  position: fixed;
+  bottom: 20px; /* Espaciado entre botones */
+  right: 20px;
+  background-color: #0077b5;
+  color: #ffffff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.linkedin-float:hover {
+  background-color: #005582;
+}
+
+.linkedin-float i {
+  font-size: 24px;
+}
+

@@ -90,3 +90,84 @@
     margin-top: 20px;
   }
 }
+/* Botón flotante de GitHub */
+.github-float {
+  position: fixed;
+  bottom: 160px; /* Ajusta la posición vertical del botón */
+  right: 20px; /* Ajusta la posición horizontal del botón */
+  background-color: #333; /* Color de fondo de GitHub */
+  color: #ffffff; /* Color del icono */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.github-float:hover {
+  background-color: #24292e; /* Cambia a un color más oscuro al pasar el mouse */
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+}
+
+.github-float i {
+  font-size: 24px; /* Tamaño del icono */
+}
+
+
+/* Estilos para el botón flotante de WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  bottom: 90px; /* Ajuste para no superponer los botones */
+  right: 20px;
+  background-color: #25d366;
+  color: #ffffff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.whatsapp-float:hover {
+  background-color: #1ebe57;
+}
+
+.whatsapp-float i {
+  font-size: 24px;
+}
+
+/* Estilos para el botón flotante de LinkedIn */
+.linkedin-float {
+  position: fixed;
+  bottom: 20px; /* Espaciado entre botones */
+  right: 20px;
+  background-color: #0077b5;
+  color: #ffffff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.linkedin-float:hover {
+  background-color: #005582;
+}
+
+.linkedin-float i {
+  font-size: 24px;
+}
+
