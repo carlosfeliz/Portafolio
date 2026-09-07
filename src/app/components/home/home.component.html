@@ -1,24 +1,68 @@
-<div class="home-container d-flex align-items-center justify-content-center text-white">
-  <div class="text-content text-center">
-    <h1 class="fw-bold"><span class="text-primary">Carlos Alberto Feliz Recio</span></h1>
-    <h3 class="fw-bold">Desarrollador de Software | Frontend & Backend</h3>
-    <p class="lead mb-4">Construyo experiencias digitales eficientes y dinámicas</p>
-    <a routerLink="/projects" class="btn btn-primary btn-lg me-2">Ver Mis Proyectos</a>
-    <a routerLink="/contact"  class="btn btn-outline-light btn-lg">Contáctame</a>
+<section class="hero-section d-flex align-items-center justify-content-center">
+  <div class="background-mesh"></div>
+  <div class="background-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
   </div>
-  <div class="profile-image">
-    <img src="images/yo.png" alt="Perfil" class="rounded-circle img-fluid" />
+
+  <div class="floating-tech d-none d-lg-block">
+    @for (tech of techIcons; track tech; let i = $index) {
+      <div class="tech-blob tech-{{ i + 1 }}">
+        <img [src]="getTechIcon(tech)" [alt]="tech" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg'">
+      </div>
+    }
   </div>
-</div>
-  <!-- Botón flotante de WhatsApp -->
-  <a href="https://wa.me/8293291204" target="_blank" class="whatsapp-float">
-    <i class="bi bi-whatsapp"></i>
-  </a>
-<!-- Botón flotante de LinkedIn -->
-<a href="https://www.linkedin.com/in/carlos-alberto-feliz-recio-b1907a20a/" target="_blank" class="linkedin-float">
-  <i class="bi bi-linkedin"></i>
-</a>
-<!-- Botón flotante de GitHub -->
-<a href="https://github.com/carlosfeliz" target="_blank" class="github-float">
-  <i class="bi bi-github"></i>
-</a>
+
+  <div class="container">
+    <div class="row align-items-center min-vh-75">
+      <div class="col-lg-7 text-content fade-up">
+        <div class="greeting-wrapper mb-4">
+          <div class="greeting-badge">
+            <span class="greeting-text">{{ t.hi }}</span>
+            <div class="greeting-line"></div>
+          </div>
+        </div>
+        <h1 class="display-1 fw-bold mb-2">
+          <span class="text-white">Carlos</span>
+          <span class="text-primary glow-text"> Feliz</span>
+        </h1>
+        <div class="role-wrapper mb-4">
+          <h2 class="h3 fw-bold text-secondary d-flex align-items-center">
+            <span class="typing-text">{{ displayRole }}</span><span class="cursor">|</span>
+          </h2>
+        </div>
+        <p class="lead text-muted mb-5 fs-5 pe-lg-5" style="line-height: 1.8;">{{ t.description }}</p>
+        <div class="cta-group d-flex align-items-center gap-3 mb-5">
+          <a routerLink="/projects" class="btn btn-premium btn-lg px-4 shadow-xl">{{ t.viewProjects }} <i class="bi bi-arrow-right-short ms-2"></i></a>
+          <a routerLink="/contact" class="btn btn-outline-premium btn-lg px-4">{{ t.contactMe }}</a>
+        </div>
+        <div class="hero-stats row g-4 mt-2">
+          @for (stat of stats; track stat.label) {
+            <div class="col-4 col-md-3">
+              <div class="stat-card">
+                <span class="stat-number d-block h3 fw-bold text-white mb-0">{{ stat.value }}+</span>
+                <span class="stat-label extra-small text-muted text-uppercase fw-bold">{{ getT(stat.label) }}</span>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+      <div class="col-lg-5 mt-5 mt-lg-0 profile-section fade-in">
+        <div class="profile-asymmetry shadow-2xl">
+          <div class="profile-inner glass-border">
+            <img src="images/yo.png" alt="Carlos Feliz" class="profile-main-img">
+          </div>
+          <div class="abstract-shape shape-1"></div>
+          <div class="abstract-shape shape-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="social-side-bar d-none d-md-flex flex-column gap-3">
+    <a href="https://github.com/carlosfeliz" target="_blank" title="GitHub" class="social-icon"><i class="bi bi-github"></i></a>
+    <a href="https://linkedin.com/in/carlos-alberto-feliz-recio-b1907a20a" target="_blank" title="LinkedIn" class="social-icon"><i class="bi bi-linkedin"></i></a>
+    <a href="https://wa.me/8293291204" target="_blank" title="WhatsApp" class="social-icon"><i class="bi bi-whatsapp"></i></a>
+  </div>
+</section>

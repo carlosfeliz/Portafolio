@@ -1,21 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { LanguageService } from './services/language.service';
 
 @Component({
   selector: 'app-root',
-  standalone: true, // Importante para standalone components
-  imports: [RouterModule], // Importa RouterModule para <router-outlet>
+  standalone: true,
+  imports: [RouterModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title(title: any) {
-    throw new Error('Method not implemented.');
+  readonly langService = inject(LanguageService);
+  readonly currentYear = new Date().getFullYear();
+
+  toggleLang(): void {
+    this.langService.toggleLanguage();
   }
-  navItems = [
-    { label: 'Home', path: '/' },
-    { label: 'Proyectos', path: '/projects' },
-    { label: 'Sobre Mí', path: '/about' },
-    { label: 'Contacto', path: '/contact' },
-  ];
 }

@@ -1,149 +1,162 @@
-<div class="project-section">
+<section class="projects-section py-5">
   <div class="container">
-    <h2 class="text-center mb-4">Mis Proyectos</h2>
+    <div class="header-content text-center mb-5 fade-in">
+      <h6 class="text-primary fw-bold text-uppercase mb-2">My Portfolio</h6>
+      <h2 class="display-5 fw-bold text-white mb-3">{{ t.title }}</h2>
+      <p class="text-muted mx-auto" style="max-width: 600px;">{{ t.subtitle }}</p>
+    </div>
 
-    <!-- Tabs -->
-    <ul class="nav nav-tabs justify-content-center" id="projectTabs" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="web-tab" data-bs-toggle="tab" data-bs-target="#web" type="button" role="tab"
-          aria-controls="web" aria-selected="true">Web</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="desktop-tab" data-bs-toggle="tab" data-bs-target="#desktop" type="button"
-          role="tab" aria-controls="desktop" aria-selected="false">Desktop</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="mobile-tab" data-bs-toggle="tab" data-bs-target="#mobile" type="button" role="tab"
-          aria-controls="mobile" aria-selected="false">Mobile</button>
-      </li>
-    </ul>
-
-    <!-- Template for No Projects Message -->
-    <ng-template #noProjects>
-      <div class="text-center mt-4">
-        <p>No hay proyectos disponibles en esta categoría.</p>
-      </div>
-    </ng-template>
-
-    <!-- Tab Content -->
-    <div class="tab-content" id="projectTabsContent">
-      <!-- Web Projects -->
-      <div class="tab-pane fade show active" id="web" role="tabpanel" aria-labelledby="web-tab">
-        <div *ngIf="getProjectsByCategory('web').length > 0; else noProjects" class="row g-4 mt-3">
-          <div *ngFor="let project of getProjectsByCategory('web')" class="col-md-4 d-flex align-items-stretch">
-            <div class="card shadow-lg w-100">
-              <button class="btn p-0 w-100 border-0" (click)="openModal(project)">
-                <img [src]="project.images[0]" class="card-img-top" alt="{{ project.name }}">
-              </button>
-              <div class="card-body d-flex flex-column">
-                <h5 class="card-title text-center">{{ project.name }}</h5>
-                <p class="card-text text-center flex-grow-1">{{ project.description }}</p>
-                <button class="btn btn-primary mt-auto" (click)="openModal(project)">Ver más</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Desktop Projects -->
-      <div class="tab-pane fade" id="desktop" role="tabpanel" aria-labelledby="desktop-tab">
-        <div *ngIf="getProjectsByCategory('desktop').length > 0; else noProjects" class="row g-4 mt-3">
-          <div *ngFor="let project of getProjectsByCategory('desktop')" class="col-md-4 d-flex align-items-stretch">
-            <div class="card shadow-lg w-100">
-              <button class="btn p-0 w-100 border-0" (click)="openModal(project)">
-                <img [src]="project.images[0]" class="card-img-top" alt="{{ project.name }}">
-              </button>
-              <div class="card-body d-flex flex-column">
-                <h5 class="card-title text-center">{{ project.name }}</h5>
-                <p class="card-text text-center flex-grow-1">{{ project.description }}</p>
-                <button class="btn btn-primary mt-auto" (click)="openModal(project)">Ver más</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mobile Projects -->
-      <div class="tab-pane fade" id="mobile" role="tabpanel" aria-labelledby="mobile-tab">
-        <div *ngIf="getProjectsByCategory('mobile').length > 0; else noProjects" class="row g-4 mt-3">
-          <div *ngFor="let project of getProjectsByCategory('mobile')" class="col-md-4 d-flex align-items-stretch">
-            <div class="card shadow-lg w-100">
-              <button class="btn p-0 w-100 border-0" (click)="openModal(project)">
-                <img [src]="project.images[0]" class="card-img-top" alt="{{ project.name }}">
-              </button>
-              <div class="card-body d-flex flex-column">
-                <h5 class="card-title text-center">{{ project.name }}</h5>
-                <p class="card-text text-center flex-grow-1">{{ project.description }}</p>
-                <button class="btn btn-primary mt-auto" (click)="openModal(project)">Ver más</button>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="filter-wrapper mb-5 fade-in d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+<ul id="projectTabs" role="tablist" class="nav nav-pills">
+        @for (tab of tabs; track tab) {
+          <li class="nav-item">
+            <button type="button" class="nav-link" [class.active]="activeTab === tab" (click)="setTab(tab)">
+              <i class="bi" [class.bi-globe2]="tab === 'web'" [class.bi-phone]="tab === 'mobile'"></i>
+              <span class="ms-2">{{ tab === 'web' ? t.web : t.mobile }}</span>
+            </button>
+          </li>
+        }
+      </ul>
+      <div class="privacy-filters glass-pills">
+        <button class="filter-pill" [class.active]="activePrivacyFilter === 'all'" (click)="setPrivacyFilter('all')"> {{ t.all }} </button>
+        <button class="filter-pill" [class.active]="activePrivacyFilter === 'public'" (click)="setPrivacyFilter('public')">
+          <i class="bi bi-unlock-fill me-1 text-success"></i> {{ t.public }}
+        </button>
+        <button class="filter-pill" [class.active]="activePrivacyFilter === 'private'" (click)="setPrivacyFilter('private')">
+          <i class="bi bi-lock-fill me-1 text-danger"></i> {{ t['private'] }}
+        </button>
       </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="projectModalLabel">{{ selectedProject?.name }}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-
-          <div class="modal-body" *ngIf="selectedProject">
-            <div id="projectCarousel" class="carousel slide">
-              <div class="carousel-inner">
-                <div *ngFor="let image of selectedProject.images; let i = index" class="carousel-item"
-                  [class.active]="i === 0">
-                  <img [src]="image" class="d-block w-100" alt="Imagen del proyecto">
+    <div class="tab-content fade-in">
+      @if (getPaginatedProjects().length > 0) {
+        <div class="row g-4">
+          @for (project of getPaginatedProjects(); track name(project)) {
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+              <div class="project-card glass-card w-100">
+                <div class="project-img-container" (click)="openDetails(project)">
+                  <img class="project-img" [src]="project.images[0]" [alt]="name(project)">
+                  <div class="project-overlay">
+                    <button class="btn btn-premium btn-sm">{{ t.viewProject }}</button>
+                  </div>
+                </div>
+                <div class="project-body p-4 d-flex flex-column">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h3 class="h6 fw-bold text-white mb-0 d-flex align-items-center gap-2 flex-wrap">
+                      {{ name(project) }}
+                      @if (project.isPrivate) {
+                        <span class="badge bg-danger extra-small"><i class="bi bi-lock-fill me-1"></i>{{ t['private'] }}</span>
+                      } @else {
+                        <span class="badge bg-success extra-small"><i class="bi bi-unlock-fill me-1"></i>{{ t.public }}</span>
+                      }
+                    </h3>
+                    @if (!project.isPrivate && project.github) {
+                      <a [href]="project.github" target="_blank" class="text-primary h5 mb-0" [title]="t.public"><i class="bi bi-github"></i></a>
+                    } @else {
+                      <span class="text-secondary h5 mb-0" [title]="t['private']"><i class="bi bi-shield-lock-fill"></i></span>
+                    }
+                  </div>
+                  <p class="text-muted small mb-3 flex-grow-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-clamp: 2; overflow: hidden;">
+                    {{ description(project) }}
+                  </p>
+                  <div class="tech-tags d-flex flex-wrap gap-2 mt-auto pt-3">
+                    @for (tech of project.technologies; track tech) {
+                      <span class="badge glass text-primary-subtle border border-primary-subtle px-2 py-1">{{ tech }}</span>
+                    }
+                  </div>
                 </div>
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-                <span class="visually-hidden">Anterior</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-                <span class="visually-hidden">Siguiente</span>
-              </button>
             </div>
+          }
+        </div>
+      } @else {
+        <div class="text-center py-5 glass mt-4 rounded-4 fade-in">
+          <i class="bi bi-folder2-open display-4 text-muted mb-3 d-block"></i>
+          <span class="text-muted">{{ t.empty }}</span>
+        </div>
+      }
 
-            <div class="technologies mt-4 text-center">
-              <ng-container *ngFor="let tech of selectedProject?.technologies">
-                <i [class]="'devicon-' + tech + '-plain colored'" class="tech-logo"></i>
-              </ng-container>
+      @if (totalPages > 1) {
+        <div class="d-flex justify-content-center mt-5">
+          <nav aria-label="Page navigation">
+            <ul class="pagination pagination-sm">
+              <li class="page-item" [class.disabled]="currentPage === 1">
+                <button class="page-link" [attr.aria-label]="t['prev']" (click)="prevPage()"><i class="bi bi-chevron-left"></i></button>
+              </li>
+              @for (page of totalPagesArray; track page) {
+                <li class="page-item" [class.active]="page === currentPage">
+                  <button class="page-link" (click)="goToPage(page)">{{ page }}</button>
+                </li>
+              }
+              <li class="page-item" [class.disabled]="currentPage === totalPages">
+                <button class="page-link" [attr.aria-label]="t['next']" (click)="nextPage()"><i class="bi bi-chevron-right"></i></button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<div id="projectModal" tabindex="-1" aria-hidden="true" class="modal fade">
+  <div class="modal-dialog modal-dialog-centered">
+    @if (selectedProject) {
+      <div class="modal-content glass border-0 overflow-hidden shadow-2xl">
+        <button class="modal-nav-btn prev d-none d-lg-flex" [title]="t['prev']" (click)="prevImage()"><i class="bi bi-chevron-left"></i></button>
+        <button class="modal-nav-btn next d-none d-lg-flex" [title]="t['next']" (click)="nextImage()"><i class="bi bi-chevron-right"></i></button>
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title h5 fw-bold text-white">{{ name(selectedProject) }}</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" (click)="closeDetails()"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="row g-4">
+            <div class="col-12">
+              <div id="projectCarousel" data-bs-ride="carousel" class="carousel slide rounded-4 overflow-hidden shadow-lg" style="height: 250px">
+                <div class="carousel-inner h-100">
+                  @for (image of selectedProject.images; track image; let i = $index) {
+                    <div class="carousel-item h-100" [class.active]="i === currentImageIndex">
+                      <img [src]="image" [alt]="name(selectedProject)" class="d-block w-100 h-100" style="object-fit: cover">
+                    </div>
+                  }
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+              </div>
+              <div class="project-details-content h-100 d-flex flex-column">
+                <div class="mb-4">
+                  <div class="text-primary fw-bold text-uppercase small mb-2">{{ t.overview }}</div>
+                  <div class="text-muted small" style="line-height: 1.6">{{ description(selectedProject) }}</div>
+                </div>
+                <div class="d-flex flex-wrap gap-2">
+                  @for (tech of selectedProject.technologies; track tech) {
+                    <span class="tech-icon-pill glass d-flex align-items-center px-3 py-2">
+                      <img [src]="getTechIcon(tech)" [alt]="tech" class="me-2 mini-logo" style="width: 20px" onerror="this.style.display='none'">
+                      <span class="text-white extra-small fw-bold text-capitalize">{{ tech }}</span>
+                    </span>
+                  }
+                </div>
+                <div class="mt-auto pt-3">
+                  <div class="d-flex flex-column gap-2 mb-3">
+                    @if (selectedProject.demo) {
+                      <a [href]="selectedProject.demo" target="_blank" class="btn btn-premium w-100">{{ t.liveDemo }} <i class="bi bi-rocket-takeoff-fill ms-2"></i></a>
+                    }
+                    @if (!selectedProject.isPrivate && selectedProject.github) {
+                      <a [href]="selectedProject.github" target="_blank" class="btn btn-outline-premium w-100">{{ t.viewCert }} <i class="bi bi-github ms-2"></i></a>
+                    } @else {
+                      <button type="button" class="btn btn-secondary w-100 opacity-75" disabled><i class="bi bi-lock-fill me-2"></i>{{ t['private'] }}</button>
+                    }
+                  </div>
+                  <div class="d-flex d-lg-none justify-content-between mt-2">
+                    <button class="btn btn-outline-light btn-sm px-3" (click)="prevImage()"><i class="bi bi-arrow-left me-2"></i>{{ t['prev'] }}</button>
+                    <button class="btn btn-outline-light btn-sm px-3" (click)="nextImage()">{{ t['next'] }}<i class="bi bi-arrow-right ms-2"></i></button>
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <div class="access-info text-center mt-4">
-              <p><strong>Usuario:</strong> {{ selectedProject?.username || 'N/A' }}</p>
-              <p><strong>Contraseña:</strong> {{ selectedProject?.password || 'N/A' }}</p>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <a *ngIf="selectedProject?.link" [href]="selectedProject?.link" target="_blank" rel="noopener noreferrer"
-              class="btn btn-primary">Ver Proyecto</a>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>
-    </div>
+    }
   </div>
 </div>
- <!-- Botón flotante de WhatsApp -->
- <a href="https://wa.me/8293291204" target="_blank" class="whatsapp-float">
-  <i class="bi bi-whatsapp"></i>
-</a>
-
-
-<!-- Botón flotante de LinkedIn -->
-<a href="https://www.linkedin.com/in/carlos-alberto-feliz-recio-b1907a20a/" target="_blank" class="linkedin-float">
-<i class="bi bi-linkedin"></i>
-</a>
-<!-- Botón flotante de GitHub -->
-<a href="https://github.com/carlosfeliz" target="_blank" class="github-float">
-<i class="bi bi-github"></i>
-</a>

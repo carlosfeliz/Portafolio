@@ -1,27 +1,69 @@
+<section class="contact-section py-5">
+  <div class="container">
+    <div class="header-content text-center mb-5 fade-in">
+      <h6 class="text-primary fw-bold text-uppercase mb-2">{{ t.getInTouch }}</h6>
+      <h2 class="display-5 fw-bold text-white mb-3">{{ t.letsWork }}</h2>
+      <p class="text-muted mx-auto" style="max-width: 600px;">{{ t.contactIntro }}</p>
+    </div>
 
+    <div class="row g-5">
+      <div class="col-lg-5 fade-in">
+        <h3 class="h4 fw-bold text-white mb-4">{{ t.contactInfoTitle }}</h3>
+        <div class="contact-info-list d-flex flex-column gap-4">
+          <div class="contact-info-item d-flex align-items-center glass p-3">
+            <div class="icon-box glass me-3"><i class="bi bi-envelope text-primary"></i></div>
+            <div>
+              <p class="text-muted small mb-0">{{ t.emailLabel }}</p>
+              <a href="mailto:carlosa_feliz@outlook.com" class="text-white text-decoration-none fw-bold">carlosa_feliz&#64;outlook.com</a>
+            </div>
+          </div>
+          <div class="contact-info-item d-flex align-items-center glass p-3">
+            <div class="icon-box glass me-3"><i class="bi bi-telephone text-secondary"></i></div>
+            <div>
+              <p class="text-muted small mb-0">{{ t.phoneLabel }}</p>
+              <a href="https://wa.me/8293291204" target="_blank" class="text-white text-decoration-none fw-bold">+1 (829) 329-1204</a>
+            </div>
+          </div>
+          <div class="contact-info-item d-flex align-items-center glass p-3">
+            <div class="icon-box glass me-3"><i class="bi bi-geo-alt text-accent"></i></div>
+            <div>
+              <p class="text-muted small mb-0">{{ t.locationLabel }}</p>
+              <span class="text-white fw-bold">{{ t.locationValue }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="social-links-grid mt-5">
+          <h6 class="text-muted text-uppercase mb-3 small fw-bold">{{ t.socialTitle }}</h6>
+          <div class="d-flex gap-2">
+            <a href="https://github.com/carlosfeliz" target="_blank" class="btn btn-dark glass-card px-3"><i class="bi bi-github me-2"></i>GitHub</a>
+            <a href="https://linkedin.com/in/carlos-alberto-feliz-recio-b1907a20a" target="_blank" class="btn btn-dark glass-card px-3"><i class="bi bi-linkedin me-2"></i>LinkedIn</a>
+          </div>
+        </div>
+      </div>
 
-  <div class="contact-container ">
-    <h2 class="text-center mb-4">Contacto</h2>
-    <div class="text-center">
-      <!-- Botón de contacto por correo -->
-      <a href="mailto:carlosa_feliz@outlook.com?subject=Contacto%20desde%20tu%20portafolio&body=Hola%20Carlos,%20quisiera%20ponerme%20en%20contacto%20contigo."
-         class="btn btn-primary">
-        Contactar por Correo
-      </a>
+      <div class="col-lg-7 fade-in">
+        <div class="contact-form-wrapper glass p-4 p-md-5">
+          <form novalidate class="row g-3" (ngSubmit)="sendEmail()">
+            <div class="col-md-6">
+              <label class="form-label text-white small fw-bold">{{ t.name }}</label>
+              <input type="text" name="name" class="form-control glass-input" placeholder="{{ t.namePlaceholder }}" [(ngModel)]="contact.name" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-white small fw-bold">{{ t.email }}</label>
+              <input type="email" name="email" class="form-control glass-input" placeholder="{{ t.emailPlaceholder }}" [(ngModel)]="contact.email" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label text-white small fw-bold">{{ t.message }}</label>
+              <textarea rows="5" name="message" class="form-control glass-input" placeholder="{{ t.msgPlaceholder }}" [(ngModel)]="contact.message" required></textarea>
+            </div>
+            <div class="col-12 mt-4">
+              <button type="submit" class="btn btn-premium w-100 py-3">
+                {{ t.sendMessage }} <i class="bi bi-send ms-2"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
-
-  <!-- Botón flotante de WhatsApp -->
-  <a href="https://wa.me/8293291204" target="_blank" class="whatsapp-float">
-    <i class="bi bi-whatsapp"></i>
-  </a>
-
-
-<!-- Botón flotante de LinkedIn -->
-<a href="https://www.linkedin.com/in/carlos-alberto-feliz-recio-b1907a20a/" target="_blank" class="linkedin-float">
-  <i class="bi bi-linkedin"></i>
-</a>
-<!-- Botón flotante de GitHub -->
-<a href="https://github.com/carlosfeliz" target="_blank" class="github-float">
-  <i class="bi bi-github"></i>
-</a>
+</section>

@@ -1,85 +1,152 @@
-<div class="about-container ">
-  <div class="row align-items-center">
-    <!-- Imagen de avatar -->
-    <div class="col-md-4 text-center avatar-container">
-      <img src="images/yo.png" alt="Carlos Alberto Feliz Recio" class="rounded-circle img-fluid mb-3 animated-avatar">
+﻿<section class="about-section py-5">
+  <div class="container">
+    <div class="row align-items-center mb-5">
+      <div class="col-lg-4 text-center mb-4 mb-lg-0 fade-in">
+        <div class="about-avatar-wrapper mx-auto">
+          <img src="images/yo.png" alt="Carlos Alberto Feliz Recio" class="avatar-img shadow-lg">
+          <div class="experience-badge glass">
+            <span class="number">5+</span>
+            <span class="text">{{ t.totalExp }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 fade-in">
+        <h6 class="text-primary fw-bold text-uppercase mb-2">{{ t.getKnowMe }}</h6>
+        <h2 class="display-4 fw-bold text-white mb-4">{{ t.aboutMe }}</h2>
+        <p class="lead text-muted mb-4">{{ t.intro }}</p>
+        <div class="info-cards row g-3">
+          <div class="col-md-6">
+            <div class="info-card glass p-3">
+              <i class="bi bi-mortarboard-fill text-primary mb-2 d-block h4"></i>
+              <h5 class="text-white mb-1 h6">{{ t.education }}</h5>
+              <p class="text-muted small mb-0">{{ t.eduDegree }}</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="info-card glass p-3">
+              <i class="bi bi-briefcase-fill text-secondary mb-2 d-block h4"></i>
+              <h5 class="text-white mb-1 h6">{{ t.currentFocus }}</h5>
+              <p class="text-muted small mb-0">{{ t.focusDetail }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Información personal -->
-    <div class="col-md-8">
-      <h2 class="fw-bold text-danger fade-in">Carlos Alberto Feliz Recio</h2>
-      <p class="lead fade-in">
-        Soy un desarrollador de software apasionado por crear aplicaciones modernas, eficientes y escalables.
-      </p>
+    <div class="experience-timeline mt-5 fade-in">
+      <h3 class="text-white fw-bold mb-4 d-flex align-items-center h4">
+        <i class="bi bi-clock-history text-primary me-3"></i>{{ t.expTitle }}
+      </h3>
+      <div class="timeline-container ps-4 border-start border-primary border-2">
+        @for (item of timeline; track item.company) {
+          <div class="timeline-item mb-5 position-relative">
+            <div class="timeline-dot" [class.bg-secondary]="item.color === 'secondary'"></div>
+            <h4 class="h6 fw-bold text-white mb-1">{{ item.role[langService.getCurrentLang()] }}</h4>
+            <p class="text-primary small fw-bold mb-2" [class.text-secondary]="item.color === 'secondary'">{{ item.company }} | {{ item.period }}</p>
+            <ul class="text-muted small">
+              @for (point of item.points[langService.getCurrentLang()]; track point) {
+                <li>{{ point }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    </div>
 
+    <div class="tech-stack-section mt-5 fade-in">
+      <div class="mb-5">
+        <h3 class="text-white fw-bold mb-1 h4">{{ t.techExpertise }}</h3>
+        <p class="text-muted small">{{ t.techSub }}</p>
+      </div>
+
+      <div class="tech-category mb-5">
+        <h4 class="text-primary h6 fw-bold text-uppercase mb-4 d-flex align-items-center">
+          <i class="bi bi-window-sidebar me-3"></i>{{ t.frontend }}
+        </h4>
+        <div class="skills-grid mb-4">
+          @for (tech of frontendTech; track tech) {
+            <div class="skill-item glass-card tech-clickable" [class.no-detail]="!techDetails[tech]" [class.active]="selectedTech !== null && selectedTech.title === (techDetails[tech] ? techDetails[tech].title : '')" (click)="selectTech(tech)">
+              <img [src]="getSkillIcon(tech)" [alt]="tech" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg'">
+              <span>{{ tech }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="tech-category mb-5">
+        <h4 class="text-secondary h6 fw-bold text-uppercase mb-4 d-flex align-items-center">
+          <i class="bi bi-server me-3"></i>{{ t.backend }}
+        </h4>
+        <div class="skills-grid mb-4">
+          @for (tech of backendTech; track tech) {
+            <div class="skill-item glass-card tech-clickable" [class.no-detail]="!techDetails[tech]" [class.active]="selectedTech !== null && selectedTech.title === (techDetails[tech] ? techDetails[tech].title : '')" (click)="selectTech(tech)">
+              <img [src]="getSkillIcon(tech)" [alt]="tech" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg'">
+              <span>{{ tech }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="certifications-section mt-5 pt-4 fade-in">
+      <h3 class="text-white fw-bold mb-4 d-flex align-items-center h4">
+        <i class="bi bi-patch-check text-accent me-3"></i>{{ t.certs }}
+      </h3>
+      <div class="row g-3">
+        @for (cert of certifications; track cert.link) {
+          <div class="col-md-6 col-lg-4">
+            <a [href]="cert.link" target="_blank" class="cert-card glass p-3 d-flex align-items-center text-decoration-none transition-all">
+              <div class="cert-icon-wrapper me-3">
+                <i class="bi bi-{{ cert.icon }} h4 mb-0 text-primary"></i>
+              </div>
+              <div class="cert-info">
+                <h5 class="text-white h6 mb-1 text-truncate" [title]="cert.title">{{ cert.title }}</h5>
+                <span class="text-muted extra-small d-flex align-items-center">{{ t.viewCert }} <i class="bi bi-box-arrow-up-right ms-2 mt-1" style="font-size: .7rem"></i></span>
+              </div>
+            </a>
+          </div>
+        }
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- Detalles adicionales -->
-  <div class="row">
-
-
-    <div class="col-md-6 fade-in">
-      <h4>FORMACIÓN ACADÉMICA</h4>
-      <p><strong>Superior:</strong> Tecnólogo en Desarrollo de Software, Instituto Tecnológico de las Américas (ITLA)</p>
-
-      <h4>EXPERIENCIA LABORAL</h4>
-      <ul class="list-unstyled">
-        <li><strong>Desarrollador Móvil Flutter</strong></li>
-        <li><strong>Desarrollador PHP Framework Laravel</strong></li>
-        <li><strong>Desarrollador Java Spring Boot</strong></li>
-        <li><strong>Desarrollador de Bases de Datos MySQL</strong></li>
-      </ul>
-    </div>
-    <div class="col-md-6 fade-in">
-      <h4>TECNOLOGIAS</h4>
-      <ul class="tech-list">
-        <li>
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" class="tech-logo">
-          Flutter
-        </li>
-        <li>
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel" class="tech-logo">
-          Laravel
-        </li>
-        <li>
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring" class="tech-logo">
-          Spring
-        </li>
-        <li>
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="tech-logo">
-          MySQL
-        </li>
-        <li>
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure DevOps" class="tech-logo">
-          Azure DevOps
-        </li>
-        <li>
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="Angular" class="tech-logo">
-          Angular
-        </li>
-      </ul>
-
-    </div>
-
+<div id="techModal" tabindex="-1" aria-hidden="true" class="modal fade">
+  <div class="modal-dialog modal-dialog-centered">
+    @if (selectedTech) {
+      <div class="modal-content glass border-0 shadow-2xl">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title h5 fw-bold text-white">{{ selectedTech.title }}</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="glass-light p-3 rounded-4 mb-3 d-inline-flex align-items-center gap-2">
+            <i class="bi bi-award text-primary"></i>
+            <span class="fw-bold text-white small">{{ selectedTech.experience[langService.getCurrentLang()] }}</span>
+          </div>
+          <div class="text-primary fw-bold text-uppercase small mb-2">{{ t.overview }}</div>
+          <p class="text-muted small" style="line-height: 1.6">{{ selectedTech.description[langService.getCurrentLang()] }}</p>
+          <div class="mt-4">
+            <div class="text-primary fw-bold text-uppercase small mb-2">{{ t.proficiencies }}</div>
+            <div class="d-flex flex-wrap gap-2">
+              @for (skill of selectedTech.keySkills; track skill) {
+                <span class="tech-icon-pill badge glass text-white px-3 py-2">{{ skill }}</span>
+              }
+            </div>
+          </div>
+          <div class="mt-4">
+            <div class="text-primary fw-bold text-uppercase small mb-2">{{ langService.getCurrentLang() === 'es' ? 'Proyectos Relacionados' : 'Related Projects' }}</div>
+            <div class="d-flex flex-column gap-2">
+              @for (project of selectedTech.projects; track $index) {
+                <span class="project-link-item glass px-3 py-2 text-muted small"><i class="bi bi-folder2-open me-2 text-primary"></i>{{ project }}</span>
+              }
+            </div>
+          </div>
+          <div class="text-end mt-4">
+            <button class="btn btn-outline-premium btn-sm" (click)="closeModal()">{{ t.close }}</button>
+          </div>
+        </div>
+      </div>
+    }
   </div>
-
-  </div>
-
-  <!-- Certificaciones y habilidades -->
-  <div class="row">
-
-
 </div>
-  <!-- Botón flotante de WhatsApp -->
-  <a href="https://wa.me/8293291204" target="_blank" class="whatsapp-float">
-    <i class="bi bi-whatsapp"></i>
-  </a>
-<!-- Botón flotante de LinkedIn -->
-<a href="https://www.linkedin.com/in/carlos-alberto-feliz-recio-b1907a20a/" target="_blank" class="linkedin-float">
-  <i class="bi bi-linkedin"></i>
-</a>
-<!-- Botón flotante de GitHub -->
-<a href="https://github.com/carlosfeliz" target="_blank" class="github-float">
-  <i class="bi bi-github"></i>
-</a>

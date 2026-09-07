@@ -12,7 +12,9 @@ export class AuthService {
   login(username: string, password: string): boolean {
     if (username === 'admin' && password === 'password') {
       this.isLoggedIn = true;
-      localStorage.setItem('auth', 'true');
+      if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+        localStorage.setItem('auth', 'true');
+      }
       this.router.navigate(['/admin']);
       return true;
     }
@@ -21,11 +23,16 @@ export class AuthService {
 
   logout() {
     this.isLoggedIn = false;
-    localStorage.removeItem('auth');
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      localStorage.removeItem('auth');
+    }
     this.router.navigate(['/']);
   }
 
   isAuthenticated(): boolean {
-    return localStorage.getItem('auth') === 'true';
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      return localStorage.getItem('auth') === 'true';
+    }
+    return this.isLoggedIn;
   }
 }

@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vista a la Montaña | Vista general </title>
+
+    <link href="https://vista.todovirtual.cloud/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://vista.todovirtual.cloud/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="https://vista.todovirtual.cloud/assets/css/animate.css" rel="stylesheet">
+    <link href="https://vista.todovirtual.cloud/assets/css/style.css" rel="stylesheet">
+    <link href="https://vista.todovirtual.cloud/assets/css/custom.css" rel="stylesheet">
+    <link href="https://vista.todovirtual.cloud/assets/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <meta name="csrf-token" content="p1WIYKEEh204A9heZIl6cSPyGRL5EZr7H0aLd3qJ">
+    <script>
+        window.Laravel = {"csrfToken":"p1WIYKEEh204A9heZIl6cSPyGRL5EZr7H0aLd3qJ","siteUrlApi":"https:\/\/vista.todovirtual.cloud\/api","0":"tokenApi"}    </script>
+    <script src="https://vista.todovirtual.cloud/assets/js/jquery-2.1.1.js"></script>
+
+
+</head>
+
+<body class="gray-bg">
+    
+<style>
+    body.gray-bg { background: #f6f8f7; }
+    .club-site { color: #17202a; background: #f6f8f7; min-height: 100vh; }
+    .club-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 30; background: rgba(12, 30, 24, .86); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,.12); }
+    .club-nav-inner { max-width: 1180px; margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .club-brand { color: #fff; font-weight: 800; font-size: 18px; letter-spacing: 0; }
+    .club-links { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .club-links a { color: #edf7f1; font-size: 13px; font-weight: 700; }
+    .club-links .club-action { background: #f5c542; color: #153b2c; padding: 8px 12px; border-radius: 5px; }
+    .club-links .club-account { border: 1px solid rgba(255,255,255,.45); padding: 7px 10px; border-radius: 5px; }
+    .club-hero { min-height: 92vh; position: relative; overflow: hidden; color: #fff; display: flex; align-items: end; }
+    .club-hero-slide { position: absolute; inset: 0; opacity: 0; background-size: cover; background-position: center; transition: opacity 900ms ease; }
+    .club-hero-slide.active { opacity: 1; }
+    .club-hero-slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,12,10,.16), rgba(5,12,10,.78)); }
+    .club-hero-fallback { background: linear-gradient(135deg, #12372a, #276749); }
+    .club-hero-content { position: relative; z-index: 2; width: 100%; max-width: 1180px; margin: 0 auto; padding: 120px 20px 86px; }
+    .club-hero h1 { max-width: 760px; font-size: clamp(40px, 7vw, 76px); line-height: .98; font-weight: 900; margin: 0 0 18px; letter-spacing: 0; }
+    .club-hero p { max-width: 660px; font-size: 18px; line-height: 1.6; color: #e6f1ea; margin-bottom: 26px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-actions a { border-radius: 5px; padding: 12px 18px; font-weight: 800; }
+    .primary-link { background: #f5c542; color: #17382c; }
+    .secondary-link { background: rgba(255,255,255,.14); color: #fff; border: 1px solid rgba(255,255,255,.38); }
+    .club-section { padding: 58px 20px; }
+    .club-section.alt { background: #fff; }
+    .club-wrap { max-width: 1180px; margin: 0 auto; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 24px; }
+    .section-head h2 { margin: 0; font-size: 30px; font-weight: 900; letter-spacing: 0; }
+    .section-head p { max-width: 560px; color: #5f6f68; margin: 0; line-height: 1.55; }
+    .villa-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .villa-card { background: #fff; border: 1px solid #dfe7e2; border-radius: 8px; overflow: hidden; min-height: 100%; }
+    .villa-card.is-clickable { cursor: pointer; transition: transform 160ms ease, box-shadow 160ms ease; }
+    .villa-card.is-clickable:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(15, 23, 42, .12); }
+    .villa-card img { width: 100%; height: 210px; object-fit: cover; background: #dfe7e2; }
+    .villa-card-body { padding: 16px; }
+    .villa-card h3 { margin: 0 0 8px; font-size: 20px; font-weight: 800; }
+    .villa-card-body p.muted + p.muted { display: none; }
+    .muted { color: #64746c; }
+    .price { color: #1c7c54; font-weight: 900; font-size: 20px; margin-top: 12px; }
+    .feature-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    .feature { background: #fff; border: 1px solid #dfe7e2; border-radius: 8px; padding: 18px; }
+    .feature-media { height: 132px; margin: -18px -18px 14px; background: #e7eee9; overflow: hidden; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center; color: #74837b; }
+    .feature-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .feature i { color: #1c7c54; font-size: 24px; margin-bottom: 10px; }
+    .feature h3 { margin: 0 0 8px; font-size: 17px; font-weight: 800; }
+    .membership-showcase { position: relative; }
+    .membership-carousel { position: relative; overflow: hidden; }
+    .membership-track { position: relative; min-height: 390px; }
+    .membership-slide { display: grid; grid-template-columns: minmax(280px, .8fr) minmax(420px, 1fr); gap: 56px; align-items: center; min-height: 390px; padding: 18px 48px; }
+    .membership-slide.is-carousel-slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(28px); transition: opacity 360ms ease, transform 360ms ease, visibility 360ms ease; }
+    .membership-slide.is-active { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(0); }
+    .membership-copy { max-width: 430px; }
+    .membership-copy h3 { margin: 0 0 14px; font-size: 30px; line-height: 1.1; font-weight: 900; color: #142033; }
+    .membership-copy p, .membership-copy li { color: #38455a; font-size: 16px; line-height: 1.65; }
+    .membership-copy p { margin: 0 0 16px; }
+    .membership-copy ul { margin: 0 0 16px; padding-left: 0; list-style: none; }
+    .membership-copy li { position: relative; padding-left: 22px; }
+    .membership-copy li::before { content: ""; position: absolute; left: 0; top: .72em; width: 7px; height: 7px; border-radius: 50%; background: #1c7c54; }
+    .membership-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .membership-meta span { border: 1px solid #d7e1db; border-radius: 999px; color: #17382c; background: #fff; padding: 7px 10px; font-size: 12px; font-weight: 800; }
+    .membership-card-stage { position: relative; display: flex; justify-content: center; padding: 0 34px; }
+    .membership-nav { position: absolute; top: 50%; left: calc(43% + 34px); right: 12px; z-index: 6; display: flex; justify-content: space-between; pointer-events: none; transform: translateY(-50%); }
+    .membership-nav button { width: 38px; height: 38px; border: 1px solid #d7e1db; border-radius: 50%; background: #fff; color: #17382c; box-shadow: 0 8px 18px rgba(15, 23, 42, .12); pointer-events: auto; display: flex; align-items: center; justify-content: center; }
+    .membership-nav button:disabled { opacity: .35; cursor: default; }
+    .membership-nav button:focus { outline: 2px solid #f5c542; outline-offset: 2px; }
+    .membership-dots { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 22px; }
+    .membership-dot { width: 9px; height: 9px; border: 0; border-radius: 50%; background: #c9d6cf; padding: 0; transition: width 180ms ease, background 180ms ease; }
+    .membership-dot.is-active { width: 28px; border-radius: 999px; background: #1c7c54; }
+    .membership-request { margin-top: 28px; background: #fff; border: 1px solid #dfe7e2; border-radius: 8px; padding: 18px; }
+    .membership-request h3 { margin: 0 0 14px; font-size: 20px; font-weight: 900; }
+    .membership-request-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .membership-request label { display: block; font-size: 12px; font-weight: 800; color: #38455a; margin-bottom: 6px; }
+    .membership-request input, .membership-request select, .membership-request textarea { width: 100%; border: 1px solid #ced8d2; border-radius: 5px; padding: 9px 10px; }
+    .membership-request textarea { min-height: 74px; resize: vertical; }
+    .membership-request .full { grid-column: 1 / -1; }
+    .membership-pay-summary { background: #eef7f1; border: 1px solid #cfe3d7; border-radius: 6px; padding: 12px; color: #17382c; font-weight: 800; }
+    .membership-pay-summary small { display: block; color: #5f6f68; font-weight: 600; margin-top: 4px; }
+    .public-carnet-card { width: 100%; max-width: 526px; aspect-ratio: 526 / 306; position: relative; overflow: hidden; border-radius: 8px; background: #e5e7eb; box-shadow: 0 2px 8px rgba(0,0,0,.22); color: #fff; }
+    .public-carnet-photo { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .public-carnet-overlay { position: absolute; inset: 0; width: 65%; z-index: 1; }
+    .public-carnet-content { position: absolute; top: 18px; left: 16px; z-index: 2; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.45); }
+    .public-carnet-content img { height: 38px; margin-bottom: 26px; filter: drop-shadow(0 1px 2px rgba(255,255,255,.4)); }
+    .public-carnet-holder { font-size: 22px; line-height: 1.1; font-weight: 900; margin-bottom: 18px; }
+    .public-carnet-type { font-size: 20px; line-height: 1.1; font-weight: 900; margin-bottom: 8px; }
+    .public-carnet-data { font-size: 16px; line-height: 1.42; font-weight: 800; }
+    .public-carnet-qr { position: absolute; right: 16px; bottom: 16px; z-index: 2; background: #fff; padding: 5px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,.18); }
+    .public-carnet-qr img { width: 72px; height: 72px; display: block; }
+    .public-carnet-property { position: absolute; left: 16px; bottom: 14px; z-index: 2; color: #fff; font-size: 14px; font-weight: 900; text-shadow: 0 1px 2px rgba(0,0,0,.5); }
+    .menu-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .menu-item { background: #fff; border: 1px solid #dfe7e2; border-radius: 8px; overflow: hidden; }
+    .menu-img { height: 132px; background: #e7eee9; display: flex; align-items: center; justify-content: center; color: #74837b; }
+    .menu-img img { width: 100%; height: 132px; object-fit: cover; }
+    .menu-body { padding: 13px; }
+    .story-media { height: 210px; background: #e7eee9; display: flex; align-items: center; justify-content: center; color: #74837b; overflow: hidden; }
+    .story-media img, .story-media iframe { width: 100%; height: 100%; display: block; border: 0; }
+    .story-media img { object-fit: cover; }
+    .calendar-callout { background: #12372a; color: #fff; border-radius: 8px; padding: 28px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 18px; }
+    .calendar-callout h2 { margin: 0 0 8px; font-size: 28px; font-weight: 900; }
+    .calendar-callout p { color: #dce8e1; margin: 0; }
+    .contact-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .contact-item { background: #fff; border: 1px solid #dfe7e2; border-radius: 8px; padding: 16px; }
+    .club-footer h2 { margin: 0 0 16px; color: #fff; font-size: 20px; font-weight: 800; letter-spacing: 0; }
+    .footer-socials { display: flex; align-items: center; justify-content: center; gap: 24px; margin-bottom: 22px; }
+    .footer-socials a { color: #fff; font-size: 25px; line-height: 1; }
+    .footer-socials a:hover { color: #f5c542; }
+    .club-footer p { margin: 0; font-size: 16px; color: #edf7f1; }
+    .villa-modal { position: fixed; inset: 0; z-index: 80; display: none; align-items: center; justify-content: center; padding: 22px; background: rgba(6, 15, 12, .72); }
+    .villa-modal.is-open { display: flex; }
+    .villa-modal-panel { width: min(1040px, 100%); max-height: 92vh; overflow-y: auto; background: #fff; border-radius: 8px; box-shadow: 0 22px 70px rgba(0,0,0,.34); }
+    .villa-modal-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 18px 20px; border-bottom: 1px solid #e3ebe6; }
+    .villa-modal-head h2 { margin: 0 0 5px; font-size: 26px; font-weight: 900; }
+    .villa-modal-close { border: 0; width: 36px; height: 36px; border-radius: 50%; background: #eef2f0; color: #17382c; }
+    .villa-modal-body { display: grid; grid-template-columns: minmax(280px, 1.1fr) minmax(280px, .9fr); gap: 22px; padding: 20px; }
+    .villa-modal-main { height: 390px; background: #e7eee9; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; color: #74837b; }
+    .villa-modal-main img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .villa-modal-thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(74px, 1fr)); gap: 8px; margin-top: 10px; }
+    .villa-modal-thumb { height: 62px; border: 2px solid transparent; border-radius: 5px; overflow: hidden; background: #eef2f0; padding: 0; }
+    .villa-modal-thumb.is-active { border-color: #1c7c54; }
+    .villa-modal-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .villa-modal-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 16px 0; }
+    .villa-modal-fact { border: 1px solid #dfe7e2; border-radius: 8px; padding: 11px; }
+    .villa-modal-fact strong { display: block; color: #17382c; font-size: 18px; }
+    .villa-modal-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .villa-modal-tags span { border: 1px solid #d7e1db; border-radius: 999px; padding: 7px 10px; color: #17382c; font-size: 12px; font-weight: 800; }
+    footer.club-footer { background: #0c1e18; color: #dbe7df; padding: 26px 20px; text-align: center; }
+    @media (max-width: 980px) {
+        .villa-grid, .feature-grid, .menu-grid, .contact-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .membership-request-grid { grid-template-columns: 1fr; }
+        .membership-slide, .calendar-callout, .villa-modal-body { grid-template-columns: 1fr; }
+        .membership-slide { padding: 12px 0; }
+        .membership-track { min-height: 650px; }
+        .membership-nav { left: 0; right: 0; }
+        .villa-modal-main { height: 280px; }
+    }
+    @media (max-width: 640px) {
+        .club-links a:not(.club-action):not(.club-account) { display: none; }
+        .villa-grid, .feature-grid, .menu-grid, .contact-strip { grid-template-columns: 1fr; }
+        .membership-slide { gap: 22px; min-height: auto; }
+        .membership-track { min-height: 590px; }
+        .membership-copy h3 { font-size: 24px; }
+        .membership-card-stage { padding: 0 26px; }
+        .section-head { display: block; }
+        .club-hero { min-height: 82vh; }
+    }
+</style>
+
+<div class="club-site">
+    <nav class="club-nav">
+        <div class="club-nav-inner">
+            <a class="club-brand" href="https://vista.todovirtual.cloud/villas-publicas">Vista a las Montanas</a>
+            <div class="club-links">
+                <a href="#villas">Villas</a>
+                <a href="#carnets">Carnets</a>
+                <a href="#menu">Menu</a>
+                <a href="#revista">Revista</a>
+                <a href="#contacto">Contacto</a>
+                                    <a class="club-account" href="https://vista.todovirtual.cloud/register">Registro</a>
+                    <a class="club-account" href="https://vista.todovirtual.cloud/login">Login</a>
+                                <a class="club-action" href="https://vista.todovirtual.cloud/villas-publicas/calendario">Reservar</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="club-hero">
+                    <div class="club-hero-slide active" style="background-image:url('https://vista.todovirtual.cloud/villas-media/villa_public/GjwUdcaCRVKGsoeAZAkOrHQFsb9DNLXFSQWIp6WC.jpg')"></div>
+                <div class="club-hero-content">
+            <h1>Villas Vista a las Montanas</h1>
+            <p>Reserva una villa para disfrutar la montana con comodidad, privacidad y servicio del club.</p>
+            <div class="hero-actions">
+                <a class="primary-link" href="https://vista.todovirtual.cloud/villas-publicas/calendario">Ver disponibilidad</a>
+                <a class="secondary-link" href="#villas">Explorar villas</a>
+            </div>
+        </div>
+    </header>
+
+    
+    <section id="villas" class="club-section">
+        <div class="club-wrap">
+            <div class="section-head">
+                <h2>Villas y estadias</h2>
+                <p>Galeria, capacidad, precios y acceso directo al calendario de reservas.</p>
+            </div>
+            <div class="villa-grid">
+                                                        <article class="villa-card is-clickable" data-villa-card="6" role="button" tabindex="0">
+                                                    <div class="menu-img">Sin imagen</div>
+                                                <div class="villa-card-body">
+                            <h3>Abey</h3>
+                            <p class="muted">Club Vista a las Montanas / 8 huespedes</p>
+                            <p class="muted">Club Vista a las Montanas · 8 huespedes</p>
+                            <p></p>
+                            <div class="price">$ 8,300.00 / noche</div>
+                            <div style="margin-top:12px;color:#17382c;font-weight:800;">Ver fotos y caracteristicas</div>
+                        </div>
+                    </article>
+                                                        <article class="villa-card is-clickable" data-villa-card="5" role="button" tabindex="0">
+                                                    <div class="menu-img">Sin imagen</div>
+                                                <div class="villa-card-body">
+                            <h3>casa blanca</h3>
+                            <p class="muted">Club Vista a las Montanas / 4 huespedes</p>
+                            <p class="muted">Club Vista a las Montanas · 4 huespedes</p>
+                            <p></p>
+                            <div class="price">$ 4,200.00 / noche</div>
+                            <div style="margin-top:12px;color:#17382c;font-weight:800;">Ver fotos y caracteristicas</div>
+                        </div>
+                    </article>
+                                                        <article class="villa-card is-clickable" data-villa-card="3" role="button" tabindex="0">
+                                                    <div class="menu-img">Sin imagen</div>
+                                                <div class="villa-card-body">
+                            <h3>Habitacion Compartida A</h3>
+                            <p class="muted">Area Piscina / 1 huespedes</p>
+                            <p class="muted">Area Piscina · 1 huespedes</p>
+                            <p>Habitacion economica compartida cerca de la piscina.</p>
+                            <div class="price">$ 1,500.00 / noche</div>
+                            <div style="margin-top:12px;color:#17382c;font-weight:800;">Ver fotos y caracteristicas</div>
+                        </div>
+                    </article>
+                                                        <article class="villa-card is-clickable" data-villa-card="2" role="button" tabindex="0">
+                                                    <div class="menu-img">Sin imagen</div>
+                                                <div class="villa-card-body">
+                            <h3>Villa Deluxe 201</h3>
+                            <p class="muted">Bloque Este / 2 huespedes</p>
+                            <p class="muted">Bloque Este · 2 huespedes</p>
+                            <p>Villa de lujo con jacuzzi y balcon privado.</p>
+                            <div class="price">$ 8,500.00 / noche</div>
+                            <div style="margin-top:12px;color:#17382c;font-weight:800;">Ver fotos y caracteristicas</div>
+                        </div>
+                    </article>
+                                                        <article class="villa-card is-clickable" data-villa-card="1" role="button" tabindex="0">
+                                                    <div class="menu-img">Sin imagen</div>
+                                                <div class="villa-card-body">
+                            <h3>Villa Familiar 101</h3>
+                            <p class="muted">Bloque Norte / 6 huespedes</p>
+                            <p class="muted">Bloque Norte · 6 huespedes</p>
+                            <p>Villa espaciosa para familias con vista a la montana.</p>
+                            <div class="price">$ 5,000.00 / noche</div>
+                            <div style="margin-top:12px;color:#17382c;font-weight:800;">Ver fotos y caracteristicas</div>
+                        </div>
+                    </article>
+                                                        <article class="villa-card is-clickable" data-villa-card="4" role="button" tabindex="0">
+                                                    <div class="menu-img">Sin imagen</div>
+                                                <div class="villa-card-body">
+                            <h3>Villa Standard 301</h3>
+                            <p class="muted">Bloque Sur / 3 huespedes</p>
+                            <p class="muted">Bloque Sur · 3 huespedes</p>
+                            <p>Villa acogedora para parejas.</p>
+                            <div class="price">$ 3,500.00 / noche</div>
+                            <div style="margin-top:12px;color:#17382c;font-weight:800;">Ver fotos y caracteristicas</div>
+                        </div>
+                    </article>
+                            </div>
+        </div>
+    </section>
+
+    <section class="club-section alt">
+        <div class="club-wrap">
+            <div class="calendar-callout">
+                <div>
+                    <h2>Calendario de reservas</h2>
+                    <p>Selecciona villa, revisa fechas ocupadas, marca tu rango y confirma tu reserva con tu usuario.</p>
+                </div>
+                <a class="primary-link" href="https://vista.todovirtual.cloud/villas-publicas/calendario">Abrir calendario</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="carnets" class="club-section">
+        <div class="club-wrap">
+            <div class="section-head">
+                <h2>Membresias y carnets</h2>
+                <p>El modulo reconoce socios, carnets y descuentos sincronizados para restaurante y villas.</p>
+            </div>
+                        <div class="membership-showcase" data-membership-carousel>
+                <div class="membership-carousel">
+                    <div class="membership-track">
+                                                        <article class="membership-slide is-carousel-slide is-active" data-membership-slide="0">
+                        <div class="membership-copy">
+                            <h3>2da Quincena agosto - 2025</h3>
+                                                            <p>Acceso a carnet digital, reservas de villas y beneficios exclusivos del club.</p>
+                                                        <div class="membership-meta">
+                                                                <span>365 dias</span>
+                                <span>0 invitados</span>
+                            </div>
+                        </div>
+                        <div class="membership-card-stage">
+                            <div class="public-carnet-card">
+                                <img class="public-carnet-photo" src="https://vista.todovirtual.cloud/villas-media/villa_memberships/1Vuitlbr8BfeQZu8iFRWKYuNPAc9qIdINzxblOkA.jpg" alt="Fondo carnet" loading="lazy" decoding="async">
+                                <div class="public-carnet-overlay" style="background:linear-gradient(to bottom right, #d6000099 50%, rgba(0,0,0,0) 50%);"></div>
+                                <div class="public-carnet-content">
+                                    <img src="https://vista.todovirtual.cloud/images/vsitamontana(TEMPORAL).svg" alt="Logo">
+                                    <div class="public-carnet-holder">Maria Gonzalez</div>
+                                    <div class="public-carnet-type">2da Quincena agosto - 2025</div>
+                                    <div class="public-carnet-data">
+                                        Codigo Sistema: MBR-00901<br>
+                                        Cedula: 575-7654024-8
+                                    </div>
+                                </div>
+                                <div class="public-carnet-qr">
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&data=https%3A%2F%2Fvista.todovirtual.cloud%2Fvillas-publicas%2Fcarnet%2FMBR-00901" alt="QR" loading="lazy" decoding="async">
+                                </div>
+                                <div class="public-carnet-property">Propiedad de COOPBUENO</div>
+                            </div>
+                        </div>
+                    </article>
+                                                        <article class="membership-slide is-carousel-slide " data-membership-slide="1">
+                        <div class="membership-copy">
+                            <h3>Socio General</h3>
+                                                            <ul>
+                                                                            <li>Carnet digital</li>
+                                                                            <li>Reservas de villas</li>
+                                                                            <li>Acceso a beneficios del restaurante</li>
+                                                                    </ul>
+                                                        <div class="membership-meta">
+                                                                <span>365 dias</span>
+                                <span>0 invitados</span>
+                            </div>
+                        </div>
+                        <div class="membership-card-stage">
+                            <div class="public-carnet-card">
+                                <img class="public-carnet-photo" src="https://vista.todovirtual.cloud/villas-media/villa_memberships/KM2GFMpmCUF60cGzEhgIDkXSsbeRqPd4T3MRt3Lk.jpg" alt="Fondo carnet" loading="lazy" decoding="async">
+                                <div class="public-carnet-overlay" style="background:linear-gradient(to bottom right, #123c6999 50%, rgba(0,0,0,0) 50%);"></div>
+                                <div class="public-carnet-content">
+                                    <img src="https://vista.todovirtual.cloud/images/vsitamontana(TEMPORAL).svg" alt="Logo">
+                                    <div class="public-carnet-holder">Maria Gonzalez</div>
+                                    <div class="public-carnet-type">Socio General</div>
+                                    <div class="public-carnet-data">
+                                        Codigo Sistema: MBR-00901<br>
+                                        Cedula: 575-7654024-8
+                                    </div>
+                                </div>
+                                <div class="public-carnet-qr">
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&data=https%3A%2F%2Fvista.todovirtual.cloud%2Fvillas-publicas%2Fcarnet%2FMBR-00901" alt="QR" loading="lazy" decoding="async">
+                                </div>
+                                <div class="public-carnet-property">Propiedad de COOPBUENO</div>
+                            </div>
+                        </div>
+                    </article>
+                                                        <article class="membership-slide is-carousel-slide " data-membership-slide="2">
+                        <div class="membership-copy">
+                            <h3>Socio Preferencial</h3>
+                                                            <ul>
+                                                                            <li>Descuentos configurables</li>
+                                                                            <li>Carnet personalizado</li>
+                                                                            <li>Prioridad en promociones</li>
+                                                                    </ul>
+                                                        <div class="membership-meta">
+                                                                    <span>10% descuento</span>
+                                                                <span>365 dias</span>
+                                <span>0 invitados</span>
+                            </div>
+                        </div>
+                        <div class="membership-card-stage">
+                            <div class="public-carnet-card">
+                                <img class="public-carnet-photo" src="https://vista.todovirtual.cloud/images/MONTANAS.png" alt="Fondo carnet" loading="lazy" decoding="async">
+                                <div class="public-carnet-overlay" style="background:linear-gradient(to bottom right, #1ab39499 50%, rgba(0,0,0,0) 50%);"></div>
+                                <div class="public-carnet-content">
+                                    <img src="https://vista.todovirtual.cloud/images/vsitamontana(TEMPORAL).svg" alt="Logo">
+                                    <div class="public-carnet-holder">Maria Gonzalez</div>
+                                    <div class="public-carnet-type">Socio Preferencial</div>
+                                    <div class="public-carnet-data">
+                                        Codigo Sistema: MBR-00901<br>
+                                        Cedula: 575-7654024-8
+                                    </div>
+                                </div>
+                                <div class="public-carnet-qr">
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&data=https%3A%2F%2Fvista.todovirtual.cloud%2Fvillas-publicas%2Fcarnet%2FMBR-00901" alt="QR" loading="lazy" decoding="async">
+                                </div>
+                                <div class="public-carnet-property">Propiedad de COOPBUENO</div>
+                            </div>
+                        </div>
+                    </article>
+                                    </div>
+                    <div class="membership-nav">
+                        <button type="button" data-membership-prev aria-label="Membresia anterior" >
+                            <i class="fa fa-chevron-left"></i>
+                        </button>
+                        <button type="button" data-membership-next aria-label="Membresia siguiente" >
+                            <i class="fa fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="membership-dots">
+                                            <button type="button" class="membership-dot is-active" data-membership-dot="0" aria-label="Ver 2da Quincena agosto - 2025"></button>
+                                            <button type="button" class="membership-dot " data-membership-dot="1" aria-label="Ver Socio General"></button>
+                                            <button type="button" class="membership-dot " data-membership-dot="2" aria-label="Ver Socio Preferencial"></button>
+                                    </div>
+            </div>
+
+            <form class="membership-request" method="post" action="https://vista.todovirtual.cloud/villas-publicas/membresia">
+                <input type="hidden" name="_token" value="p1WIYKEEh204A9heZIl6cSPyGRL5EZr7H0aLd3qJ" autocomplete="off">
+                <input type="text" name="company_website" value="" tabindex="-1" autocomplete="off" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+                <input type="hidden" name="form_started_at" value="1788800022">
+                <h3>Solicitar membresia</h3>
+                <div class="membership-request-grid">
+                    <div>
+                        <label>Nombre completo</label>
+                        <input type="text" name="member_name" value="" required>
+                    </div>
+                    <div>
+                        <label>Telefono</label>
+                        <input type="text" name="phone" value="" required>
+                    </div>
+                    <div>
+                        <label>Correo</label>
+                        <input type="email" name="email" value="">
+                    </div>
+                    <div>
+                        <label>Cedula / RNC</label>
+                        <input type="text" name="cedula" value="">
+                    </div>
+                    <div>
+                        <label>Tipo de membresia</label>
+                        <select name="villa_membership_type_id" id="membershipTypeSelect">
+                            <option value="" data-price="0">Seleccionar luego</option>
+                                                            <option value="3" data-price="0" >2da Quincena agosto - 2025</option>
+                                                            <option value="1" data-price="0" >Socio General</option>
+                                                            <option value="2" data-price="0" >Socio Preferencial</option>
+                                                    </select>
+                    </div>
+                    <div>
+                        <label>Total de membresia</label>
+                        <div class="membership-pay-summary">
+                            <span id="membershipPayTotal">$ 0.00</span>
+                            <small>El pago queda pendiente para validacion y cobro seguro.</small>
+                        </div>
+                    </div>
+                    <div class="full">
+                        <label>Notas</label>
+                        <textarea name="notes"></textarea>
+                    </div>
+                    <div class="full">
+                        <button type="submit" class="primary-link" style="border:0;">Comprar / solicitar membresia</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section id="menu" class="club-section alt">
+        <div class="club-wrap">
+            <div class="section-head">
+                <h2>Menu y restaurante</h2>
+                <p>El portal de villas tambien conecta con la experiencia del restaurante.</p>
+            </div>
+            <div class="menu-grid">
+                                    <article class="menu-item">
+                        <div class="menu-img">
+                                                            <img src="https://vista.todovirtual.cloud/uploads/products/thumb/27.jpg" alt="a qui eos" loading="lazy" decoding="async">
+                                                    </div>
+                        <div class="menu-body">
+                            <strong>a qui eos</strong>
+                            <div class="muted">Cafetería especial</div>
+                        </div>
+                    </article>
+                                    <article class="menu-item">
+                        <div class="menu-img">
+                                                            <span>Cafetería</span>
+                                                    </div>
+                        <div class="menu-body">
+                            <strong>ab occaecati laudantium</strong>
+                            <div class="muted">Cafetería</div>
+                        </div>
+                    </article>
+                                    <article class="menu-item">
+                        <div class="menu-img">
+                                                            <span>Bebidas Con Alcohol</span>
+                                                    </div>
+                        <div class="menu-body">
+                            <strong>accusamus sed dolore</strong>
+                            <div class="muted">Bebidas Con Alcohol</div>
+                        </div>
+                    </article>
+                                    <article class="menu-item">
+                        <div class="menu-img">
+                                                            <span>Insumos</span>
+                                                    </div>
+                        <div class="menu-body">
+                            <strong>Aceite Vegetal</strong>
+                            <div class="muted">Insumos</div>
+                        </div>
+                    </article>
+                                    <article class="menu-item">
+                        <div class="menu-img">
+                                                            <span>Bebidas Sin Alcohol</span>
+                                                    </div>
+                        <div class="menu-body">
+                            <strong>Agua Mineral</strong>
+                            <div class="muted">Bebidas Sin Alcohol</div>
+                        </div>
+                    </article>
+                                    <article class="menu-item">
+                        <div class="menu-img">
+                                                            <span>Bebidas Sin Alcohol</span>
+                                                    </div>
+                        <div class="menu-body">
+                            <strong>Agua Mineral</strong>
+                            <div class="muted">Bebidas Sin Alcohol</div>
+                        </div>
+                    </article>
+                                    <article class="menu-item">
+                        <div class="menu-img">
+                                                            <span>Bebidas Sin Alcohol</span>
+                                                    </div>
+                        <div class="menu-body">
+                            <strong>Agua Mineral</strong>
+                            <div class="muted">Bebidas Sin Alcohol</div>
+                        </div>
+                    </article>
+                                    <article class="menu-item">
+                        <div class="menu-img">
+                                                            <span>Aperitivos</span>
+                                                    </div>
+                        <div class="menu-body">
+                            <strong>Alitas de Pollo</strong>
+                            <div class="muted">Aperitivos</div>
+                        </div>
+                    </article>
+                            </div>
+        </div>
+    </section>
+
+    <section class="club-section">
+        <div class="club-wrap">
+            <div class="section-head">
+                <h2>Beneficios</h2>
+                <p>Una sola experiencia para socios, estadias y consumo.</p>
+            </div>
+            <div class="feature-grid">
+                                    <div class="feature">
+                                                    <i class="fa fa-calendar-check-o"></i>
+                                                <h3>Reservas claras</h3>
+                        <p class="muted">Calendario con disponibilidad y conflictos visibles.</p>
+                    </div>
+                                    <div class="feature">
+                                                    <i class="fa fa-id-card"></i>
+                                                <h3>Carnet digital</h3>
+                        <p class="muted">Socios, descuentos y reservas conectados al POS.</p>
+                    </div>
+                                    <div class="feature">
+                                                    <i class="fa fa-cutlery"></i>
+                                                <h3>Restaurante integrado</h3>
+                        <p class="muted">Menu y consumo en el mismo ecosistema operativo.</p>
+                    </div>
+                            </div>
+        </div>
+    </section>
+
+    <section id="revista" class="club-section alt">
+        <div class="club-wrap">
+            <div class="section-head">
+                <h2>Revista del club</h2>
+                <p>Historias, actividades e informacion destacada para socios y visitantes.</p>
+            </div>
+            <div class="villa-grid">
+                                    <div class="alert alert-info">Pronto publicaremos novedades del club.</div>
+                            </div>
+        </div>
+    </section>
+
+            <section class="club-section">
+            <div class="club-wrap">
+                <div class="section-head">
+                    <h2>Testimonios</h2>
+                    <p>Lo que cuentan quienes ya vivieron la experiencia.</p>
+                </div>
+                <div class="feature-grid">
+                                                                    <div class="feature">
+                                                            <i class="fa fa-quote-left"></i>
+                                                        <div style="color:#f5b301;margin-bottom:8px;">★★★★★</div>
+                            <h3>Una experiencia para descansar, compartir y volver.</h3>
+                            <p class="muted">Una experiencia para descansar, compartir y volver.</p>
+                        </div>
+                                    </div>
+            </div>
+        </section>
+    
+    
+    <section id="contacto" class="club-section alt">
+        <div class="club-wrap">
+            <div class="section-head">
+                <h2>Contacto</h2>
+                <p>Coordina tu estadia, eventos o soporte de membresia.</p>
+            </div>
+            <div class="contact-strip">
+                <div class="contact-item"><strong>Telefono</strong><br>829 333 4544</div>
+                <div class="contact-item"><strong>Correo</strong><br>soporte@clubvista</div>
+                <div class="contact-item"><strong>Horario club</strong><br>10:00 AM - 10:00 PM</div>
+                <div class="contact-item"><strong>Ubicacion</strong><br>dirección 123</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="club-footer">
+        <h2>Siguenos en nuestras redes</h2>
+        <div class="footer-socials">
+                                            </div>
+        <p>© 2026 Villas Vista a las Montanas. Todos los derechos reservados.</p>
+    </footer>
+
+    <div class="villa-modal" id="villaDetailModal" aria-hidden="true">
+        <div class="villa-modal-panel">
+            <div class="villa-modal-head">
+                <div>
+                    <h2 id="villaModalTitle">Villa</h2>
+                    <div class="muted" id="villaModalLocation"></div>
+                </div>
+                <button type="button" class="villa-modal-close" id="villaModalClose" aria-label="Cerrar">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+            <div class="villa-modal-body">
+                <div>
+                    <div class="villa-modal-main" id="villaModalMain">Sin imagen</div>
+                    <div class="villa-modal-thumbs" id="villaModalThumbs"></div>
+                </div>
+                <div>
+                    <p id="villaModalDescription"></p>
+                    <div class="price" id="villaModalPrice"></div>
+                    <div class="villa-modal-facts">
+                        <div class="villa-modal-fact"><span class="muted">Capacidad</span><strong id="villaModalCapacity"></strong></div>
+                        <div class="villa-modal-fact"><span class="muted">Habitaciones</span><strong id="villaModalBedrooms"></strong></div>
+                        <div class="villa-modal-fact"><span class="muted">Banos</span><strong id="villaModalBathrooms"></strong></div>
+                        <div class="villa-modal-fact"><span class="muted">Alquiler parcial</span><strong id="villaModalPartial"></strong></div>
+                    </div>
+                    <div id="villaModalRoomPrice" class="muted"></div>
+                    <div class="villa-modal-tags" id="villaModalAmenities"></div>
+                    <div style="margin-top:18px;">
+                        <a class="primary-link" id="villaModalReserveLink" href="https://vista.todovirtual.cloud/villas-publicas/calendario">Ver disponibilidad</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const villaDetails = [{"id":6,"name":"Abey","description":null,"location":"Club Vista a las Montanas","capacity":8,"bedrooms":1,"bathrooms":1,"price_label":"$ 8,300.00 \/ noche","room_price_label":null,"partial_enabled":false,"images":[],"amenities":[]},{"id":5,"name":"casa blanca","description":null,"location":"Club Vista a las Montanas","capacity":4,"bedrooms":2,"bathrooms":1,"price_label":"$ 4,200.00 \/ noche","room_price_label":null,"partial_enabled":false,"images":[],"amenities":[]},{"id":3,"name":"Habitacion Compartida A","description":"Habitacion economica compartida cerca de la piscina.","location":"Area Piscina","capacity":1,"bedrooms":1,"bathrooms":1,"price_label":"$ 1,500.00 \/ noche","room_price_label":null,"partial_enabled":false,"images":[],"amenities":["Piscina","Wifi"]},{"id":2,"name":"Villa Deluxe 201","description":"Villa de lujo con jacuzzi y balcon privado.","location":"Bloque Este","capacity":2,"bedrooms":1,"bathrooms":1,"price_label":"$ 8,500.00 \/ noche","room_price_label":null,"partial_enabled":false,"images":[],"amenities":["Jacuzzi","Balcon","Aire","Wifi"]},{"id":1,"name":"Villa Familiar 101","description":"Villa espaciosa para familias con vista a la montana.","location":"Bloque Norte","capacity":6,"bedrooms":2,"bathrooms":2,"price_label":"$ 5,000.00 \/ noche","room_price_label":null,"partial_enabled":false,"images":[],"amenities":["Wifi","Aire","Vista a la montana"]},{"id":4,"name":"Villa Standard 301","description":"Villa acogedora para parejas.","location":"Bloque Sur","capacity":3,"bedrooms":1,"bathrooms":1,"price_label":"$ 3,500.00 \/ noche","room_price_label":null,"partial_enabled":false,"images":[],"amenities":["Aire","Wifi","Nevera"]}];
+        const villaModal = document.getElementById('villaDetailModal');
+        const villaModalClose = document.getElementById('villaModalClose');
+        const villaModalMain = document.getElementById('villaModalMain');
+        const villaModalThumbs = document.getElementById('villaModalThumbs');
+
+        function setVillaModalImage(images, activeIndex) {
+            villaModalMain.innerHTML = '';
+            villaModalThumbs.innerHTML = '';
+
+            if (!images.length) {
+                villaModalMain.textContent = 'Sin imagen';
+                return;
+            }
+
+            const mainImage = document.createElement('img');
+            mainImage.src = images[activeIndex];
+            mainImage.alt = 'Imagen de villa';
+            villaModalMain.appendChild(mainImage);
+
+            images.forEach(function (src, index) {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'villa-modal-thumb' + (index === activeIndex ? ' is-active' : '');
+                const image = document.createElement('img');
+                image.src = src;
+                image.alt = 'Miniatura de villa';
+                button.appendChild(image);
+                button.addEventListener('click', function () {
+                    setVillaModalImage(images, index);
+                });
+                villaModalThumbs.appendChild(button);
+            });
+        }
+
+        function openVillaModal(id) {
+            const villa = villaDetails.find(function (item) {
+                return String(item.id) === String(id);
+            });
+
+            if (!villa || !villaModal) return;
+
+            document.getElementById('villaModalTitle').textContent = villa.name || 'Villa';
+            document.getElementById('villaModalLocation').textContent = villa.location || '';
+            document.getElementById('villaModalDescription').textContent = villa.description || 'Sin descripcion disponible.';
+            document.getElementById('villaModalPrice').textContent = villa.price_label || '';
+            document.getElementById('villaModalCapacity').textContent = (villa.capacity || 0) + ' huespedes';
+            document.getElementById('villaModalBedrooms').textContent = villa.bedrooms || 'N/D';
+            document.getElementById('villaModalBathrooms').textContent = villa.bathrooms || 'N/D';
+            document.getElementById('villaModalPartial').textContent = villa.partial_enabled ? 'Disponible' : 'Villa completa';
+            document.getElementById('villaModalRoomPrice').textContent = villa.room_price_label || '';
+            document.getElementById('villaModalReserveLink').href = "https:\/\/vista.todovirtual.cloud\/villas-publicas\/calendario" + '?villa_id=' + encodeURIComponent(villa.id);
+
+            const amenities = document.getElementById('villaModalAmenities');
+            amenities.innerHTML = '';
+            (villa.amenities || []).forEach(function (item) {
+                const tag = document.createElement('span');
+                tag.textContent = item;
+                amenities.appendChild(tag);
+            });
+
+            setVillaModalImage(villa.images || [], 0);
+            villaModal.classList.add('is-open');
+            villaModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVillaModal() {
+            if (!villaModal) return;
+            villaModal.classList.remove('is-open');
+            villaModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('[data-villa-card]').forEach(function (card) {
+            card.addEventListener('click', function () {
+                openVillaModal(card.getAttribute('data-villa-card'));
+            });
+            card.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openVillaModal(card.getAttribute('data-villa-card'));
+                }
+            });
+        });
+
+        if (villaModalClose) {
+            villaModalClose.addEventListener('click', closeVillaModal);
+        }
+        if (villaModal) {
+            villaModal.addEventListener('click', function (event) {
+                if (event.target === villaModal) {
+                    closeVillaModal();
+                }
+            });
+        }
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                closeVillaModal();
+            }
+        });
+
+        const slides = document.querySelectorAll('.club-hero-slide');
+        if (slides.length > 1) {
+            let current = 0;
+            setInterval(function () {
+                slides[current].classList.remove('active');
+                current = (current + 1) % slides.length;
+                slides[current].classList.add('active');
+            }, 6500);
+        }
+
+        const membershipCarousel = document.querySelector('[data-membership-carousel]');
+        const membershipSelect = document.getElementById('membershipTypeSelect');
+        const membershipPayTotal = document.getElementById('membershipPayTotal');
+
+        if (membershipSelect && membershipPayTotal) {
+            const currency = "$";
+            const formatter = new Intl.NumberFormat('es-DO', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            const updateMembershipPrice = function () {
+                const option = membershipSelect.options[membershipSelect.selectedIndex];
+                const price = parseFloat(option ? option.getAttribute('data-price') || '0' : '0');
+                membershipPayTotal.textContent = currency + ' ' + formatter.format(isNaN(price) ? 0 : price);
+            };
+            membershipSelect.addEventListener('change', updateMembershipPrice);
+            updateMembershipPrice();
+        }
+
+        if (!membershipCarousel) return;
+
+        const membershipSlides = membershipCarousel.querySelectorAll('[data-membership-slide]');
+        const membershipDots = membershipCarousel.querySelectorAll('[data-membership-dot]');
+        const prev = membershipCarousel.querySelector('[data-membership-prev]');
+        const next = membershipCarousel.querySelector('[data-membership-next]');
+        let membershipCurrent = 0;
+
+        function showMembership(index) {
+            if (!membershipSlides.length) return;
+
+            membershipCurrent = (index + membershipSlides.length) % membershipSlides.length;
+            membershipSlides.forEach(function (slide, slideIndex) {
+                slide.classList.toggle('is-active', slideIndex === membershipCurrent);
+            });
+            membershipDots.forEach(function (dot, dotIndex) {
+                dot.classList.toggle('is-active', dotIndex === membershipCurrent);
+            });
+        }
+
+        if (prev && next && membershipSlides.length > 1) {
+            prev.addEventListener('click', function () {
+                showMembership(membershipCurrent - 1);
+            });
+            next.addEventListener('click', function () {
+                showMembership(membershipCurrent + 1);
+            });
+            membershipDots.forEach(function (dot, dotIndex) {
+                dot.addEventListener('click', function () {
+                    showMembership(dotIndex);
+                });
+            });
+            setInterval(function () {
+                showMembership(membershipCurrent + 1);
+            }, 7200);
+        }
+    });
+</script>
+
+    <script src="https://vista.todovirtual.cloud/assets/js/bootstrap.min.js"></script>
+    <script src="https://vista.todovirtual.cloud/assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="https://vista.todovirtual.cloud/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="https://vista.todovirtual.cloud/assets/js/inspinia.js"></script>
+    <script src="https://vista.todovirtual.cloud/assets/js/plugins/pace/pace.min.js"></script>
+    <script src="https://vista.todovirtual.cloud/assets/js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="https://vista.todovirtual.cloud/assets/js/demo/peity-demo.js"></script>
+    <script src="https://vista.todovirtual.cloud/assets/js/plugins/sweetalert/sweetalert.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var sessionSwal = {"icon":"info","title":"No disponible","text":"La vista solicitada no existe o no esta disponible."};
+            if (!sessionSwal || typeof swal !== 'function') return;
+
+            swal({
+                title: sessionSwal.title || 'Aviso',
+                text: sessionSwal.text || '',
+                type: sessionSwal.icon || 'info',
+                confirmButtonText: sessionSwal.confirmButtonText || 'Entendido'
+            });
+        });
+    </script>
+
+    <script>
+        (function () {
+            function confirmAction(options, callback) {
+                if (window.Swal && typeof window.Swal.fire === 'function') {
+                    window.Swal.fire({
+                        title: options.title,
+                        text: options.text,
+                        icon: options.icon || 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: options.confirmButtonText || 'Confirmar',
+                        cancelButtonText: 'Cancelar',
+                        confirmButtonColor: options.confirmButtonColor
+                    }).then(function (result) {
+                        if (result.isConfirmed) callback();
+                    });
+                    return;
+                }
+
+                if (typeof swal === 'function') {
+                    var swalResult = swal({
+                        title: options.title,
+                        text: options.text,
+                        type: options.icon || 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: options.confirmButtonColor || '#DD6B55',
+                        confirmButtonText: options.confirmButtonText || 'Confirmar',
+                        cancelButtonText: 'Cancelar',
+                    }, function (isConfirm) {
+                        if (isConfirm) callback();
+                    });
+
+                    if (swalResult && typeof swalResult.then === 'function') {
+                        swalResult.then(function (result) {
+                            if (result === true || (result && (result.value === true || result.isConfirmed === true))) {
+                                callback();
+                            }
+                        }).catch(function () {});
+                    }
+                    return;
+                }
+
+                if (window.confirm(options.fallbackText || options.title)) callback();
+            }
+
+            function confirmDelete(callback) {
+                confirmAction({
+                    title: 'Eliminar registro?',
+                    text: 'Esta accion no se puede deshacer.',
+                    icon: 'warning',
+                    confirmButtonText: 'Si, eliminar',
+                    confirmButtonColor: '#DD6B55',
+                    fallbackText: 'Eliminar registro?'
+                }, callback);
+            }
+
+            function confirmLogout(callback) {
+                confirmAction({
+                    title: 'Cerrar sesion?',
+                    text: 'Vas a salir de tu cuenta.',
+                    icon: 'warning',
+                    confirmButtonText: 'Si, salir',
+                    confirmButtonColor: '#1ab394',
+                    fallbackText: 'Cerrar sesion?'
+                }, callback);
+            }
+
+            function isDeleteForm(form) {
+                if (!form) return false;
+                var methodInput = form.querySelector('input[name="_method"]');
+                return methodInput && String(methodInput.value).toUpperCase() === 'DELETE';
+            }
+
+            function formForTrigger(trigger) {
+                if (!trigger) return null;
+                var formId = trigger.getAttribute('form');
+                if (formId) return document.getElementById(formId);
+                return trigger.closest ? trigger.closest('form') : null;
+            }
+
+            function isDeleteLink(link) {
+                if (!link || !link.matches || !link.matches('a')) return false;
+                var href = link.getAttribute('href') || '';
+                if (!href || href === '#' || /^javascript:/i.test(href)) return false;
+                var classes = link.className || '';
+                return link.matches('a.delete, a.js-delete-link, [data-confirm-action="delete"]')
+                    || /(?:delete|destroy|eliminar)/i.test(href)
+                    || /(?:delete|destroy|eliminar)/i.test(classes);
+            }
+
+            function isLogoutLink(link) {
+                if (!link || !link.matches || !link.matches('a')) return false;
+                var href = link.getAttribute('href') || '';
+                return link.matches('[data-confirm-action="logout"]') || /(?:^|\/)logout(?:[\/?#]|$)/i.test(href);
+            }
+
+            function submitConfirmedForm(form) {
+                form.dataset.swalConfirmed = '1';
+                if (typeof form.submit === 'function') {
+                    form.submit();
+                } else {
+                    HTMLFormElement.prototype.submit.call(form);
+                }
+            }
+
+            function submitLogout(trigger) {
+                var href = trigger.href || 'https://vista.todovirtual.cloud/logout';
+                var form = document.createElement('form');
+                var csrf = document.querySelector('meta[name="csrf-token"]');
+
+                form.method = 'POST';
+                form.action = href;
+                form.style.display = 'none';
+
+                if (csrf) {
+                    var token = document.createElement('input');
+                    token.type = 'hidden';
+                    token.name = '_token';
+                    token.value = csrf.getAttribute('content');
+                    form.appendChild(token);
+                }
+
+                document.body.appendChild(form);
+                try {
+                    HTMLFormElement.prototype.submit.call(form);
+                } catch (e) {
+                    window.location.href = href;
+                }
+            }
+
+            document.addEventListener('click', function (event) {
+                var trigger = event.target.closest ? event.target.closest('button, input[type="submit"], a') : null;
+                if (!trigger) return;
+
+                var form = formForTrigger(trigger);
+                if (form && isDeleteForm(form) && form.dataset.swalConfirmed !== '1') {
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    confirmDelete(function () {
+                        submitConfirmedForm(form);
+                    });
+                    return;
+                }
+
+                if (isLogoutLink(trigger) && trigger.dataset.swalConfirmed !== '1') {
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    confirmLogout(function () {
+                        trigger.dataset.swalConfirmed = '1';
+                        submitLogout(trigger);
+                    });
+                    return;
+                }
+
+                if (isDeleteLink(trigger) && trigger.dataset.swalConfirmed !== '1') {
+                    var href = trigger.getAttribute('href');
+                    if (!href || href === '#') return;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    confirmDelete(function () {
+                        trigger.dataset.swalConfirmed = '1';
+                        window.location.href = trigger.href;
+                    });
+                }
+            }, true);
+
+            document.addEventListener('submit', function (event) {
+                var form = event.target;
+                if (!isDeleteForm(form) || form.dataset.swalConfirmed === '1') return;
+
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                confirmDelete(function () {
+                    submitConfirmedForm(form);
+                });
+            }, true);
+        })();
+    </script>
+
+    </body>
+
+</html>
