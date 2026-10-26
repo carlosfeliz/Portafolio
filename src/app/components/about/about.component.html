@@ -137,8 +137,25 @@
           <div class="mt-4">
             <div class="text-primary fw-bold text-uppercase small mb-2">{{ langService.getCurrentLang() === 'es' ? 'Proyectos Relacionados' : 'Related Projects' }}</div>
             <div class="d-flex flex-column gap-2">
-              @for (project of selectedTech.projects; track $index) {
-                <span class="project-link-item glass px-3 py-2 text-muted small"><i class="bi bi-folder2-open me-2 text-primary"></i>{{ project }}</span>
+              @for (project of relatedProjects; track project.name.en) {
+                @let link = project.isPrivate ? project.demo : (project.github ?? project.demo);
+                <div class="project-link-item glass px-3 py-2 small d-flex align-items-center justify-content-between gap-2">
+                  <span class="text-white"><i class="bi bi-folder2-open me-2 text-primary"></i>{{ project.name[langService.getCurrentLang()] }}</span>
+                  <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                    @if (project.isPrivate) {
+                      <span class="badge glass text-muted"><i class="bi bi-lock-fill me-1"></i>{{ langService.getCurrentLang() === 'es' ? 'Privado' : 'Private' }}</span>
+                    } @else {
+                      <span class="badge glass text-muted"><i class="bi bi-github me-1"></i>{{ langService.getCurrentLang() === 'es' ? 'Público' : 'Public' }}</span>
+                    }
+                    @if (link) {
+                      <a [href]="link" target="_blank" rel="noopener" class="text-primary" [title]="project.isPrivate ? 'Demo' : 'GitHub'"><i class="bi" [class.bi-box-arrow-up-right]="project.isPrivate" [class.bi-github]="!project.isPrivate"></i></a>
+                    }
+                  </span>
+                </div>
+              } @empty {
+                @for (project of selectedTech.projects; track $index) {
+                  <span class="project-link-item glass px-3 py-2 text-muted small"><i class="bi bi-folder2-open me-2 text-primary"></i>{{ project }}</span>
+                }
               }
             </div>
           </div>
