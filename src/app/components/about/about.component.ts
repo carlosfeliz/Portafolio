@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
-import { ProjectService, TechDetail } from '../../services/project.service';
+import { Project, ProjectService, TechDetail } from '../../services/project.service';
 
 interface TimelineItem {
   role: { es: string; en: string };
@@ -52,12 +52,13 @@ export class AboutComponent {
 
   readonly techDetails: Record<string, TechDetail> = this.projectService.techDetails();
   selectedTech: TechDetail | null = null;
+  relatedProjects: Project[] = [];
   private modal?: any;
   private modalEl?: any;
   private hiddenListener?: () => void;
 
   readonly frontendTech: string[] = [
-    'flutter', 'angular', 'vuejs', 'livewire', 'ionic', 'bootstrap', 'css', 'html',
+    'flutter', 'angular', 'react', 'vuejs', 'livewire', 'ionic', 'bootstrap', 'css', 'html',
   ];
 
   readonly backendTech: string[] = [
@@ -177,6 +178,7 @@ export class AboutComponent {
       return;
     }
     this.selectedTech = this.techDetails[tech];
+    this.relatedProjects = this.projectService.projectsForTech(tech);
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       const win = window as any;
       if (win.bootstrap) {

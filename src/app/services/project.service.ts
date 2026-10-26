@@ -29,6 +29,42 @@ export class ProjectService {
   getProjects(): Project[] {
     return [
       {
+        name: { es: 'Acenel Condominios - Administración de Residenciales', en: 'Acenel Condominios - Residential Property Management' },
+        description: {
+          es: 'Plataforma SaaS para administrar condominios y residenciales: facturación mensual automática, cobros y conciliación, gastos, reservas, mantenimiento, control de acceso en garita y estados financieros para la asamblea. Frontend en Angular 20 y backend en Java Spring Boot.',
+          en: 'SaaS platform for condominium and residential management: automatic monthly invoicing, collections and reconciliation, expenses, reservations, maintenance, gatehouse access control, and financial statements for the owners assembly. Angular 20 frontend with a Java Spring Boot backend.',
+        },
+        demo: 'https://acenelcondominios.cfrsolution.cloud/',
+        images: ['images/acenel-condominios/landing.png', 'images/acenel-condominios/funcionalidades.png', 'images/acenel-condominios/precios.png', 'images/acenel-condominios/login.png'],
+        technologies: ['angular', 'typescript', 'spring-boot', 'java'],
+        category: 'web',
+        isPrivate: true,
+      },
+      {
+        name: { es: 'Acenel Contable - Suite Contable para Contadores (DGII)', en: 'Acenel Contable - Accounting Suite for Accountants (DGII)' },
+        description: {
+          es: 'Suite contable para contadores de República Dominicana: captura de comprobantes con IA, formatos 606, 607 y 608, contabilidad y estados financieros, conciliación bancaria, IT-1 e IR-2, con multi-empresa por RNC. Frontend en React.',
+          en: 'Accounting suite for Dominican Republic accountants: AI-powered receipt capture, DGII 606, 607 and 608 formats, accounting and financial statements, bank reconciliation, IT-1 and IR-2 filings, with multi-company support by RNC. React frontend.',
+        },
+        demo: 'https://acenelcontable.cfrsolution.cloud/',
+        images: ['images/acenel-contable/landing.png', 'images/acenel-contable/como-funciona.png'],
+        technologies: ['react', 'javascript'],
+        category: 'web',
+        isPrivate: true,
+      },
+      {
+        name: { es: 'Acenel POS - Punto de Venta y Facturación Electrónica e-CF', en: 'Acenel POS - Point of Sale & e-CF Electronic Invoicing' },
+        description: {
+          es: 'Punto de venta y facturación electrónica e-CF para 16 tipos de negocio en República Dominicana: caja, inventario, firma digital, envío a la DGII y formatos 606, 607 y 608 generados desde las propias ventas. Frontend en Nuxt (Vue) y backend en Laravel.',
+          en: 'Point of sale and e-CF electronic invoicing for 16 business types in the Dominican Republic: checkout, inventory, digital signing, DGII submission, and 606, 607 and 608 formats generated from the sales themselves. Nuxt (Vue) frontend with a Laravel backend.',
+        },
+        demo: 'https://acenelpos.cfrsolution.cloud/',
+        images: ['images/acenel-pos/landing.png', 'images/acenel-pos/como-empieza.png', 'images/acenel-pos/login.png'],
+        technologies: ['nuxt', 'vuejs', 'laravel', 'php', 'bootstrap'],
+        category: 'web',
+        isPrivate: true,
+      },
+      {
         name: { es: 'CFR POS - Punto de Venta & Facturación Fiscal (NCF)', en: 'CFR POS - Point of Sale & Tax Invoicing (NCF)' },
         description: {
           es: 'Sistema empresarial de Punto de Venta y Facturación Fiscal (NCF) para República Dominicana. Desarrollado con Laravel 10, Livewire y MySQL (`G:\\LaravelProyects\\laragon\\cfrpos`). Módulos de inventario, ventas rápidas, reportes de cierre de caja y comprobantes fiscales.',
@@ -212,8 +248,31 @@ export class ProjectService {
     ];
   }
 
+  /** Proyectos (públicos y privados) que usan una tecnología; las familias incluyen a sus miembros. */
+  projectsForTech(tech: string): Project[] {
+    const families: Record<string, string[]> = {
+      vuejs: ['vuejs', 'nuxt'],
+      java: ['java', 'spring-boot'],
+      nodejs: ['nodejs', 'express'],
+      php: ['php', 'laravel', 'livewire'],
+      react: ['react', 'reactjs'],
+    };
+    const keys = families[tech] ?? [tech];
+    return this.getProjects().filter((p) => p.technologies.some((t) => keys.includes(t)));
+  }
+
   techDetails(): Record<string, TechDetail> {
     return {
+      react: {
+        title: 'Frontend with React',
+        experience: { es: '3+ Años', en: '3+ Years' },
+        description: {
+          es: 'Interfaces web modernas y de alto rendimiento con React, consumiendo APIs REST y construyendo paneles de gestión y plataformas contables.',
+          en: 'Modern, high-performance web interfaces with React, consuming REST APIs and building management dashboards and accounting platforms.',
+        },
+        keySkills: ['Hooks', 'Context API', 'React Router', 'Vite'],
+        projects: ['Acenel Contable', 'SisElect - Voting Frontend'],
+      },
       csharp: {
         title: 'Backend & Enterprise Development with C# (.NET Core)',
         experience: { es: '4+ Años', en: '4+ Years' },
@@ -422,6 +481,7 @@ export class ProjectService {
       laravel: 'laravel/laravel-original.svg',
       'spring-boot': 'spring/spring-original.svg',
       vuejs: 'vuejs/vuejs-original.svg',
+      nuxt: 'nuxtjs/nuxtjs-original.svg',
       livewire: 'livewire/livewire-original.svg',
       mysql: 'mysql/mysql-original.svg',
       php: 'php/php-original.svg',
